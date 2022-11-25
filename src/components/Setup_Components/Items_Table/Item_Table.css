@@ -18,6 +18,10 @@
   color: whitesmoke;
 }
 .message {
+  width: 20%;
+  padding: 0.3%;
   text-align: center;
   color: brown;
+  background-color: gold;
+  margin: auto;
 }

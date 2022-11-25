@@ -13,13 +13,16 @@
   justify-content: space-around;
   color: whitesmoke;
   width: 80%;
+  align-items: center;
   margin: auto;
-  line-height: 100%;
 }
 .nav li {
-  padding: 2%;
+  width: 12%;
   cursor: pointer;
-  line-height: 2rem;
+}
+.nav a {
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 .setup_img {
@@ -27,7 +30,8 @@
   padding: 1%;
   line-height: 2rem;
 }
-.logo {
+.nav .logo {
+  width: 30%;
   font-weight: bold;
   font-size: 1.5rem;
 }

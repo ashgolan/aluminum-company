@@ -6,10 +6,9 @@ import { dataReducer, INITIAL_STATE } from "../../utils/fetchReducer";
 import Add_Item from "./Add_Item/Add_Item";
 import Add_Item_Btn from "./Add_Item/Add_Item_Btn";
 import Items_Table from "./Items_Table/Items_Table";
-
+import "./SetupPage.css";
 export default function SetupPage() {
   const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE);
-  const [itemsData, setItemsData] = useState([]);
   const [itemInChange, setItemInChange] = useState(false);
   const [addItemToggle, setaddItemToggle] = useState({
     btnVisible: true,
@@ -23,7 +22,6 @@ export default function SetupPage() {
           "https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany"
         );
         dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
-        setItemsData(data);
       } catch {
         dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       }
@@ -33,21 +31,30 @@ export default function SetupPage() {
 
   return (
     <div>
-      {state.loading && <h2>Loading ...</h2>}
+      {state.loading && (
+        <div className="loading">
+          <span className="loader"></span>
+        </div>
+      )}
+      {state.error && (
+        <h5 style={{ textAlign: "center", color: "brown" }}>
+          אין מוצרים .. תקלה בקריאת הנתונים
+        </h5>
+      )}
       {!state.loading &&
-        itemsData.map((item) => {
+        state.data.map((item) => {
           return (
             <Items_Table
               key={`item${item.id}`}
               item={item}
-              itemsData={itemsData}
-              setItemsData={setItemsData}
+              state={state}
+              dispatch={dispatch}
               itemInChange={itemInChange}
               setItemInChange={setItemInChange}
             ></Items_Table>
           );
         })}
-      {!addItemToggle.formVisible && (
+      {!addItemToggle.formVisible && !state.error && (
         <Add_Item_Btn setaddItemToggle={setaddItemToggle}></Add_Item_Btn>
       )}
       {!addItemToggle.btnVisible && (

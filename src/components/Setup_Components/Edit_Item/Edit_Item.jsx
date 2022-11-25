@@ -8,7 +8,6 @@ export default function Edit_Item({
   changeStatus,
   setChangeStatus,
   itemsValues,
-  message,
   setMessage,
 }) {
   const chickInputsValues = () => {
@@ -26,14 +25,17 @@ export default function Edit_Item({
   const editHandler = (e) => {
     e.preventDefault();
 
-    localStorage.setItem("itemData", JSON.stringify(itemsValues));
+    changeStatus.editText === "Edit" &&
+      localStorage.setItem("itemData", JSON.stringify(itemsValues));
 
     if (changeStatus.editText === "Confirm") {
       const haveAnEmptyValues = chickInputsValues();
-      setMessage(true);
-      if (haveAnEmptyValues) return;
+      if (haveAnEmptyValues) {
+        setMessage({ status: true, message: "צריך למלא את כל הנתונים" });
+        return;
+      }
       updateData();
-      setMessage(false);
+      setMessage({ status: false, message: null });
     }
 
     setItemInChange(!itemInChange);

@@ -55,7 +55,6 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
           className="add_item"
           accept="image/png, image/jpeg"
           onInput={(e) => {
-            console.log(e.target.files[0]);
             setItemsValues((prev) => {
               return { ...prev, image: "/images/" + e.target.files[0].name };
             });

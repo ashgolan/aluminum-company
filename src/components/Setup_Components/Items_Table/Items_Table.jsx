@@ -5,10 +5,10 @@ import Edit_Item from "../Edit_Item/Edit_Item";
 import "./Item_Table.css";
 export default function Items_Table({
   item,
-  setItemsData,
   itemInChange,
   setItemInChange,
-  itemsData,
+  state,
+  dispatch
 }) {
   const [changeStatus, setChangeStatus] = useState({
     editText: "Edit",
@@ -25,10 +25,10 @@ export default function Items_Table({
     image: null,
     id: "1",
   });
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState({ status: false, message: null });
   useEffect(() => {
     const getData = () => {
-      const thisItem = itemsData.find((t) => t.id === item.id);
+      const thisItem = state.data.find((t) => t.id === item.id);
       setItemsValues((prev) => {
         return {
           number: thisItem.number,
@@ -46,9 +46,14 @@ export default function Items_Table({
     <div>
       <form className="Item_form" key={`form${item.id}`}>
         <img
+          id="image"
           className="item_image"
           src={itemsValues.image}
           alt={`img${item.id}`}
+          value={itemsValues.image}
+          onClick={(e) => {
+            console.log(e);
+          }}
         />
         <input
           id="weight"
@@ -96,7 +101,6 @@ export default function Items_Table({
         ></input>
         {(!itemInChange || changeStatus.itemId === item.id) && (
           <Edit_Item
-            message={message}
             setMessage={setMessage}
             itemId={item.id}
             itemInChange={itemInChange}
@@ -108,18 +112,20 @@ export default function Items_Table({
         )}
         {(!itemInChange || changeStatus.itemId === item.id) && (
           <Delete_Item
+            setMessage={setMessage}
             itemInChange={itemInChange}
             setItemInChange={setItemInChange}
             itemId={item.id}
             changeStatus={changeStatus}
             setChangeStatus={setChangeStatus}
-            setItemsData={setItemsData}
             itemsValues={itemsValues}
             setItemsValues={setItemsValues}
+            dispatch={dispatch}
+            state={state}
           ></Delete_Item>
         )}
       </form>
-      {message && <h5 className="message">all values are required !!</h5>}
+      {message.status && <h5 className="message">{message.message}</h5>}
     </div>
   );
 }
