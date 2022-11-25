@@ -1,0 +1,8 @@
+.edit_btn {
+  width: 10%;
+  padding: 1%;
+  border: none;
+  background-color: rgb(9, 94, 9);
+  color: whitesmoke;
+  cursor: pointer;
+}

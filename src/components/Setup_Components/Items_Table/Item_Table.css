@@ -1,0 +1,23 @@
+.item_image {
+  width: 5%;
+}
+
+.Item_form {
+  width: 70%;
+  padding: 0.3% 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}
+.input_show_item {
+  width: 18%;
+  padding: 1%;
+  border: none;
+  background-color: rgb(48, 45, 45);
+  color: whitesmoke;
+}
+.message {
+  text-align: center;
+  color: brown;
+}

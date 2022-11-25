@@ -1,0 +1,28 @@
+.addItem_form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.add_item {
+  width: 20%;
+  padding: 1%;
+  font-size: 1rem;
+  border: none;
+  background-color: rgb(48, 45, 45);
+  color: whitesmoke;
+}
+.confirm_addItem,
+.remove_addItem {
+  width: 20%;
+  padding: 1%;
+  border: none;
+  background-color: rgb(9, 94, 9);
+  color: whitesmoke;
+  cursor: pointer;
+}
+.remove_addItem {
+  background-color: brown;
+}

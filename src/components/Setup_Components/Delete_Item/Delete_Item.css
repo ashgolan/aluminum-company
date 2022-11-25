@@ -1,0 +1,12 @@
+.delete_btn {
+  width: 10%;
+  padding: 1%;
+  border: none;
+  background-color: brown;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.delete_btn {
+  transition: background-color 0.5s ease-in 0.3s;
+}
