@@ -41,7 +41,7 @@ export default function SetupPage() {
           אין מוצרים .. תקלה בקריאת הנתונים
         </h5>
       )}
-      {!state.loading &&
+      {(!state.loading || state.data.length) &&
         state.data.map((item) => {
           return (
             <Items_Table

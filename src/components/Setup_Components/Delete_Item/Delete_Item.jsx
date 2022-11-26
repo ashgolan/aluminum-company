@@ -19,6 +19,7 @@ export default function Delete_Item({
       const filteredData = state.data.filter((item) => {
         return item.id !== itemId;
       });
+      dispatch({ type: ACTION_TYPES.FETCH_START });
       const res = await axios.delete(
         `https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany/${itemId}`,
         itemsValues
@@ -30,6 +31,7 @@ export default function Delete_Item({
         dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: filteredData });
       }, 1000);
     } catch (e) {
+      dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       setMessage({
         status: true,
         message: "המוצר לא נמצא .. תקלה בקריאת הנתונים",

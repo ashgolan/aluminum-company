@@ -8,9 +8,8 @@ export const dataReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_START":
       return {
+        ...state,
         loading: true,
-        data: [],
-        error: false,
       };
     case "FETCH_SUCCESS":
       return {

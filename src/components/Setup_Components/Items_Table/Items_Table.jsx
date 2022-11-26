@@ -8,7 +8,7 @@ export default function Items_Table({
   itemInChange,
   setItemInChange,
   state,
-  dispatch
+  dispatch,
 }) {
   const [changeStatus, setChangeStatus] = useState({
     editText: "Edit",
@@ -108,6 +108,8 @@ export default function Items_Table({
             changeStatus={changeStatus}
             setChangeStatus={setChangeStatus}
             itemsValues={itemsValues}
+            dispatch={dispatch}
+            state={state}
           ></Edit_Item>
         )}
         {(!itemInChange || changeStatus.itemId === item.id) && (
