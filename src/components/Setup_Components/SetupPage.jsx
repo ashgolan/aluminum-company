@@ -1,14 +1,15 @@
 import axios from "axios";
 import React from "react";
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
-import { dataReducer, INITIAL_STATE } from "../../utils/fetchReducer";
 import Add_Item from "./Add_Item/Add_Item";
 import Add_Item_Btn from "./Add_Item/Add_Item_Btn";
 import Items_Table from "./Items_Table/Items_Table";
+import { FetchingStatus } from "../../utils/context";
 import "./SetupPage.css";
-export default function SetupPage() {
-  const [state, dispatch] = useReducer(dataReducer, INITIAL_STATE);
+export default function SetupPage({ dispatch, state }) {
+  const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
+  console.log(fetchingStatus);
   const [itemInChange, setItemInChange] = useState(false);
   const [addItemToggle, setaddItemToggle] = useState({
     btnVisible: true,
@@ -17,13 +18,14 @@ export default function SetupPage() {
   useEffect(() => {
     const fetch = async () => {
       try {
-        dispatch({ type: ACTION_TYPES.FETCH_START });
+        setFetchingStatus({ loading: true, error: false });
         const { data } = await axios.get(
           "https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany"
         );
-        dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
+        dispatch({ type: ACTION_TYPES.FETCH_ALL_DATA, payload: data });
+        setFetchingStatus({ loading: false, error: false });
       } catch {
-        dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+        setFetchingStatus({ loading: false, error: true });
       }
     };
     fetch();
@@ -31,18 +33,18 @@ export default function SetupPage() {
 
   return (
     <div>
-      {state.loading && (
+      {fetchingStatus.loading && (
         <div className="loading">
           <span className="loader"></span>
         </div>
       )}
-      {state.error && (
+      {fetchingStatus.error && (
         <h5 style={{ textAlign: "center", color: "brown" }}>
           אין מוצרים .. תקלה בקריאת הנתונים
         </h5>
       )}
-      {(!state.loading || state.data.length) &&
-        state.data.map((item) => {
+      {(!fetchingStatus.loading || state.inventory.length) &&
+        state.inventory.map((item) => {
           return (
             <Items_Table
               key={`item${item.id}`}
@@ -54,7 +56,7 @@ export default function SetupPage() {
             ></Items_Table>
           );
         })}
-      {!addItemToggle.formVisible && !state.error && (
+      {!addItemToggle.formVisible && !fetchingStatus.error && (
         <Add_Item_Btn setaddItemToggle={setaddItemToggle}></Add_Item_Btn>
       )}
       {!addItemToggle.btnVisible && (

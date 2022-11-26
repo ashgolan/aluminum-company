@@ -2,6 +2,8 @@ import axios from "axios";
 import React from "react";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
 import "./Edit_Item.css";
+import { FetchingStatus } from "../../../utils/context";
+import { useContext } from "react";
 export default function Edit_Item({
   itemId,
   itemInChange,
@@ -13,6 +15,8 @@ export default function Edit_Item({
   dispatch,
   state,
 }) {
+  const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
+
   const checkInputsValues = () => {
     for (let i in itemsValues) {
       if (itemsValues[i] === "") return true;
@@ -26,17 +30,16 @@ export default function Edit_Item({
   };
   const updateData = async () => {
     try {
-      dispatch({ type: ACTION_TYPES.FETCH_START });
+      setFetchingStatus({ loading: true, error: false });
       const { data } = await axios.put(
         `https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany/${itemId}`,
         itemsValues
       );
-      dispatch({
-        type: ACTION_TYPES.FETCH_SUCCESS,
-        payload: state.data,
-      });
+
+      dispatch({ type: ACTION_TYPES.EDIT, payload: state.inventory });
+      setFetchingStatus({ loading: false, error: false });
     } catch {
-      dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      setFetchingStatus({ loading: false, error: true });
       setMessage({ status: true, message: ".. תקלה בקריאת הנתונים" });
     }
   };
@@ -57,6 +60,7 @@ export default function Edit_Item({
 
       isChanged && updateData();
       setMessage({ status: false, message: null });
+      localStorage.removeItem("itemData");
     }
 
     setItemInChange(!itemInChange);

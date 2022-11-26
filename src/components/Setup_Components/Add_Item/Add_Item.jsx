@@ -1,10 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { useState, useReducer } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import { FetchingStatus } from "../../../utils/context";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
-import { dataReducer, INITIAL_STATE } from "../../../utils/fetchReducer";
 import "./Add_item.css";
 export default function Add_Item({ setaddItemToggle, state, dispatch }) {
+  const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [itemsValues, setItemsValues] = useState({
     number: "",
     desc: "",
@@ -16,17 +18,15 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
 
   const addItem = async () => {
     try {
-      dispatch({ type: ACTION_TYPES.FETCH_START });
+      setFetchingStatus({ loading: true, error: false });
       const { data } = await axios.post(
         "https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany",
         itemsValues
       );
-      dispatch({
-        type: ACTION_TYPES.FETCH_SUCCESS,
-        payload: [...state.data, data],
-      });
+      dispatch({ type: ACTION_TYPES.ADD, payload: data });
+      setFetchingStatus({ loading: false, error: false });
     } catch {
-      dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      setFetchingStatus({ loading: false, error: true });
     }
   };
 

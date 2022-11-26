@@ -1,7 +1,9 @@
 import axios from "axios";
 import React from "react";
+import { useContext } from "react";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
 import "./Delete_Item.css";
+import { FetchingStatus } from "../../../utils/context";
 export default function Delete_Item({
   itemInChange,
   setItemInChange,
@@ -14,24 +16,27 @@ export default function Delete_Item({
   dispatch,
   state,
 }) {
+  const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const deleteData = async () => {
     try {
-      const filteredData = state.data.filter((item) => {
+      const filteredData = state.inventory.filter((item) => {
         return item.id !== itemId;
       });
-      dispatch({ type: ACTION_TYPES.FETCH_START });
+      setFetchingStatus({ loading: true, error: false });
       const res = await axios.delete(
         `https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany/${itemId}`,
         itemsValues
       );
       if (!res.statusText === "OK") throw Error();
+
       setMessage({ status: true, message: "המוצר נמחק בהצלחה" });
       setTimeout(() => {
         setMessage({ status: false, message: null });
-        dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: filteredData });
+        dispatch({ type: ACTION_TYPES.DELETE, payload: filteredData });
+        setFetchingStatus({ loading: false, error: false });
       }, 1000);
     } catch (e) {
-      dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      setFetchingStatus({ loading: false, error: true });
       setMessage({
         status: true,
         message: "המוצר לא נמצא .. תקלה בקריאת הנתונים",

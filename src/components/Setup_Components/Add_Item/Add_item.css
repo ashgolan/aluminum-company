@@ -10,8 +10,8 @@
   width: 18;
   padding: 1%;
   font-size: 1rem;
-  border: 1px rgb(163, 162, 162) dotted;
-  background-color: whitesmoke;
+  border: 1px rgb(124, 156, 177) dotted;
+  background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
 }
 .confirm_addItem,

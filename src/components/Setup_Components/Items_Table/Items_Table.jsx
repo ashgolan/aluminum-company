@@ -28,7 +28,7 @@ export default function Items_Table({
   const [message, setMessage] = useState({ status: false, message: null });
   useEffect(() => {
     const getData = () => {
-      const thisItem = state.data.find((t) => t.id === item.id);
+      const thisItem = state.inventory.find((t) => t.id === item.id);
       setItemsValues((prev) => {
         return {
           number: thisItem.number,
@@ -51,9 +51,6 @@ export default function Items_Table({
           src={itemsValues.image}
           alt={`img${item.id}`}
           value={itemsValues.image}
-          onClick={(e) => {
-            console.log(e);
-          }}
         />
         <input
           id="weight"

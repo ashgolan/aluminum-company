@@ -1,0 +1,15 @@
+.add_Btn {
+  text-align: center;
+  width: 25%;
+  border: none;
+  padding: 1% 2%;
+  background-color: brown;
+  color: whitesmoke;
+  margin: 1% 0;
+}
+.bid_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}

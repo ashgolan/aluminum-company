@@ -1,0 +1,22 @@
+.row {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  margin: 0.5rem 0;
+}
+.input_box {
+  width: 7rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px rgb(202, 196, 196) dotted;
+  text-align: right;
+}
+.row_number {
+  border: 1px rgb(202, 196, 196) dotted;
+  width: 2.5rem;
+  text-align: center;
+  color: brown;
+}
+.total {
+  text-align: center;
+}
