@@ -1,0 +1,54 @@
+.bidRow {
+  /* width: 80%; */
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+.bidRow div {
+  width: 10rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px rgb(202, 196, 196) dotted;
+  text-align: right;
+}
+.bid-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bid-selection {
+  padding: 1% 5%;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(148, 141, 37);
+  font-size: 1.1rem;
+  margin: 1%;
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+.titles {
+  background-color: lightgoldenrodyellow;
+  color: brown;
+  font-weight: bold;
+}
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin: 1%;
+  align-items: center;
+}
+.header i {
+  font-size: 2rem;
+  padding: 1% 5%;
+  color: green;
+}
+.approving {
+  border: none;
+  background-color: brown;
+  color: white;
+  height: 20%;
+  padding: 1% 5%;
+  font-size: 1rem;
+}

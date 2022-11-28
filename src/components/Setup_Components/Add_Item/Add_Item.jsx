@@ -23,7 +23,10 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
         "https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany",
         itemsValues
       );
-      dispatch({ type: ACTION_TYPES.ADD, payload: data });
+      dispatch({
+        type: ACTION_TYPES.ADD,
+        payload: { type: "inventory", data: data },
+      });
       setFetchingStatus({ loading: false, error: false });
     } catch {
       setFetchingStatus({ loading: false, error: true });

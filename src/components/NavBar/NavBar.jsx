@@ -8,8 +8,8 @@ function NavBar() {
         <li className="logo">אלומניום התפוח</li>
         <Link to={"/calc"}>מחשבון</Link>
         <Link to={"/forging"}>פרזול</Link>
-        <Link to={"/order"}>הזמנה למפעל</Link>
-        <Link to={"/bid"}> הצעת מחיר</Link>
+        <Link to={"/order"}>ביצוע הזמנות למפעל</Link>
+        <Link to={"/bid"}>מילוי הצעה</Link>
         <Link to={"/"}>
           <img className="setup_img" src="/setup.png" alt="" />
         </Link>

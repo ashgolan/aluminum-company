@@ -1,4 +1,4 @@
-.add_Btn {
+.save_btn {
   text-align: center;
   width: 25%;
   border: none;
@@ -12,4 +12,38 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+.header_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.name,
+.date,
+.save,
+.empty {
+  color: rgb(102, 28, 28);
+  padding: 1% 2%;
+  margin: 1%;
+  color: rgb(51, 46, 46);
+}
+.save {
+  border: none;
+  background-color: rgb(136, 138, 19);
+  color: white;
+  font-size: 1.2rem;
+}
+.name::placeholder,
+.date::placeholder {
+  color: rgb(39, 36, 36);
+  text-align: right;
+}
+.addWRow_btn {
+  width: 7%;
+  padding: 1%;
+  cursor: pointer;
+}
+.message {
+  color: brown;
 }

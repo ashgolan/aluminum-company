@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useRef } from "react";
 import "./BidRow.css";
-export default function BidRow({ numOfRow }) {
+export default function BidRow({ numOfRow, setIsFilledStatus }) {
+  const bidForm = useRef();
+  //   const totalRef = useRef();
+
   const [itemInRow, setItemInRow] = useState({
     number: "",
     desc: "",
@@ -8,12 +12,50 @@ export default function BidRow({ numOfRow }) {
     weight: "",
     length: "",
     quantity: "",
-    image: null,
+    totalWeight: "",
+    image: "",
   });
+  const checkHandler = (e) => {
+    const isFilled = validation();
+    if (isFilled) {
+      //   setItemInRow((prev) => {
+      //     return { ...prev, totalWeight: totalRef.current.value };
+      //   });
+      e.target.checked
+        ? localStorage.setItem(`row${numOfRow + 1}`, JSON.stringify(itemInRow))
+        : localStorage.removeItem(`row${numOfRow + 1}`);
+    } else {
+      e.target.checked = false;
+    }
+  };
+
+  const validation = () => {
+    const form = new FormData(bidForm.current);
+    const data = Object.fromEntries(form);
+    const vals = Object.values(data);
+    for (let prop in vals) {
+      if (vals[prop] === "") return false;
+    }
+    return true;
+  };
+
   return (
-    <div className="row">
-      <input disabled className="input_box total" placeholder='סה"כ'></input>
+    <form ref={bidForm} className="row">
+      <input type="checkbox" onClick={(e) => checkHandler(e)} />
       <input
+        // ref={totalRef}
+        name="totalWeight"
+        disabled
+        className="input_box total"
+        value={itemInRow.quantity * itemInRow.weight}
+        onChange={(e) =>
+          setItemInRow((prev) => {
+            return { ...prev, totalWeight: e.target.value };
+          })
+        }
+      ></input>
+      <input
+        name="weight"
         className="input_box"
         placeholder="משקל"
         value={itemInRow.weight}
@@ -24,6 +66,7 @@ export default function BidRow({ numOfRow }) {
         }
       ></input>
       <input
+        name="quantity"
         className="input_box"
         placeholder="כמות"
         value={itemInRow.quantity}
@@ -34,6 +77,7 @@ export default function BidRow({ numOfRow }) {
         }
       ></input>
       <input
+        name="length"
         className="input_box"
         placeholder="אורך"
         value={itemInRow.length}
@@ -44,6 +88,7 @@ export default function BidRow({ numOfRow }) {
         }
       ></input>
       <input
+        name="image"
         type="file"
         className="input_box"
         onInput={(e) => {
@@ -53,6 +98,7 @@ export default function BidRow({ numOfRow }) {
         }}
       />
       <input
+        name="kind"
         className="input_box"
         placeholder="סוג"
         value={itemInRow.kind}
@@ -63,6 +109,7 @@ export default function BidRow({ numOfRow }) {
         }
       ></input>
       <input
+        name="desc"
         className="input_box"
         placeholder="מוצר"
         value={itemInRow.desc}
@@ -73,6 +120,7 @@ export default function BidRow({ numOfRow }) {
         }
       ></input>
       <input
+        name="number"
         className="input_box"
         placeholder="מספר"
         value={itemInRow.number}
@@ -83,6 +131,6 @@ export default function BidRow({ numOfRow }) {
         }
       ></input>
       <input disabled className="row_number" value={numOfRow + 1} />
-    </div>
+    </form>
   );
 }

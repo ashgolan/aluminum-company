@@ -1,25 +1,27 @@
 export const INITIAL_STATE = {
   inventory: [],
-  bid: [{ name: "", date: "", isAproved: false, items: [] }],
+  bids: [],
   forging: [],
 };
 
-const FETCH_ALL_DATA = (state, data) => {
-  return { ...state, inventory: data };
+const FETCH_ALL_DATA = (state, configData) => {
+  return { ...state, [configData.type]: configData.setupData };
 };
-const ADD = (state, Obj) => {
-  return { ...state, inventory: [...state.inventory, Obj] };
+const ADD = (state, configObj) => {
+  return {
+    ...state,
+    [configObj.type]: [...state[configObj.type], configObj.data],
+  };
 };
-const EDIT = (state, updatedData) => {
-  return { ...state, inventory: updatedData };
+// const EDIT = (state, updatedData) => {
+//   return { ...state, inventory: updatedData };
+// };
+const EDIT = (state, configObj) => {
+  return { ...state, [configObj.type]: configObj.updateData };
 };
 const DELETE = (state, updatedData) => {
   return { ...state, inventory: updatedData };
 };
-
-// const FetchAllData = (category, state, data) => {
-//   return { ...state, [category]: data };
-// };
 
 export const fetchReducer = (state, action) => {
   switch (action.type) {
