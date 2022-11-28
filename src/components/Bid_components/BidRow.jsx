@@ -7,7 +7,7 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
   const [itemInRow, setItemInRow] = useState({
     number: "",
     desc: "",
-    kind: "",
+    category: "",
     weight: "",
     length: "",
     quantity: "",
@@ -100,13 +100,13 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
         }}
       />
       <input
-        name="kind"
+        name="category"
         className="input_box"
         placeholder="סוג"
-        value={itemInRow.kind}
+        value={itemInRow.category}
         onChange={(e) =>
           setItemInRow((prev) => {
-            return { ...prev, kind: e.target.value };
+            return { ...prev, category: e.target.value };
           })
         }
       ></input>

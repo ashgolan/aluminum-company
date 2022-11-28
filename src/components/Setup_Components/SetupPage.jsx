@@ -20,7 +20,7 @@ export default function SetupPage({ dispatch, state }) {
       try {
         setFetchingStatus({ loading: true, error: false });
         const { data } = await axios.get(
-          "https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany"
+          "https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory"
         );
         dispatch({
           type: ACTION_TYPES.FETCH_ALL_DATA,

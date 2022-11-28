@@ -32,7 +32,7 @@ export default function Edit_Item({
     try {
       setFetchingStatus({ loading: true, error: false });
       const { data } = await axios.put(
-        `https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany/${itemId}`,
+        `https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory/${itemId}`,
         itemsValues
       );
 

@@ -1,12 +1,16 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
 import "./OrderPage.css";
 export default function OrderPage({ data: allData, dispatch }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isApproved, setIsApproved] = useState(false);
-
+  const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   const filtered = allData.bids.filter((clientBid) => {
     return clientBid.isApproved === isApproved;
   });
@@ -16,9 +20,9 @@ export default function OrderPage({ data: allData, dispatch }) {
       <option
         id={bid.id}
         key={`bidName${index}`}
-        value={`${bid.name}${bid.date}`}
+        value={`${bid.clientName}${bid.date}`}
       >
-        {bid.name} - {bid.date}
+        {bid.clientName} - {bid.date}
       </option>
     );
   });
@@ -38,7 +42,7 @@ export default function OrderPage({ data: allData, dispatch }) {
           <div>{bidRow.quantity}</div>
           <div>{bidRow.length}</div>
           <div>{bidRow.image}</div>
-          <div>{bidRow.kind}</div>
+          <div>{bidRow.category}</div>
           <div>{bidRow.desc}</div>
           <div>{bidRow.number}</div>
         </form>
@@ -48,17 +52,21 @@ export default function OrderPage({ data: allData, dispatch }) {
   const approveBid = async (e) => {
     try {
       foundClient.isApproved = true;
+      setFetchingStatus({ loading: true, error: false });
       const { data } = await axios.put(
-        `https://6374adb808104a9c5f85d1fb.mockapi.io/Bids/${foundClient.id}`,
+        `https://6384bd7c3fa7acb14fff0d13.mockapi.io/bids/${foundClient.id}`,
         foundClient
       );
       dispatch({
         type: ACTION_TYPES.EDIT,
         payload: { type: "bids", updateData: allData.bids },
       });
+      setFetchingStatus({ loading: false, error: false });
       setSelectedOption((prev) => null);
       console.log(allData);
-    } catch {}
+    } catch {
+      setFetchingStatus({ loading: false, error: true });
+    }
   };
   return (
     <div className="bid-container">
@@ -70,7 +78,7 @@ export default function OrderPage({ data: allData, dispatch }) {
           }}
           className="fa-solid fa-clock-rotate-left"
         ></i>
-        {!isApproved && (
+        {foundClient && !isApproved && (
           <button
             onClick={(e) => {
               approveBid(e);
@@ -80,7 +88,17 @@ export default function OrderPage({ data: allData, dispatch }) {
             שלח להזמנה
           </button>
         )}
-        {foundClient && <div>{foundClient.color}</div>}
+        {foundClient && (
+          <div
+            style={{
+              fontWeight: "bold",
+              backgroundColor: "gold",
+              padding: "1%",
+            }}
+          >
+            צבע : {foundClient.color}
+          </div>
+        )}
         <select
           className="bid-selection"
           onChange={(e) => {

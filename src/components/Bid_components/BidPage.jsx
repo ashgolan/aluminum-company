@@ -15,19 +15,21 @@ export default function BidPage({ dispatch, allData }) {
   const [message, setMessage] = useState(false);
 
   const [bid, setBid] = useState({
-    name: "",
+    clientName: "",
     date: "",
     color: "",
     isApproved: false,
     data: [],
   });
-
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   const uploadData = async (bidObj) => {
     try {
       setFetchingStatus({ loading: true, error: false });
 
       const { data } = await axios.post(
-        "https://6374adb808104a9c5f85d1fb.mockapi.io/Bids",
+        "https://6384bd7c3fa7acb14fff0d13.mockapi.io/bids",
         bidObj
       );
       dispatch({
@@ -53,13 +55,12 @@ export default function BidPage({ dispatch, allData }) {
       }
     });
     uploadData({
-      name: bid.name,
+      clientName: bid.clientName,
       date: bid.date,
       color: bid.color,
       isApproved: bid.isApproved,
       data: allBidRows,
     });
-    console.log(allBidRows);
     localStorage.clear();
     setMessage(true);
     setTimeout(() => {
@@ -100,10 +101,10 @@ export default function BidPage({ dispatch, allData }) {
           required
           type="text"
           placeholder="שם"
-          value={bid.name}
+          value={bid.clientName}
           onChange={(e) => {
             setBid((prev) => {
-              return { ...prev, name: e.target.value };
+              return { ...prev, clientName: e.target.value };
             });
           }}
         />

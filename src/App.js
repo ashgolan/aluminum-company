@@ -74,7 +74,10 @@ function App() {
             path="/order"
             element={<OrderPage data={data} dispatch={dispatchData} />}
           />
-          <Route path="/forging" element={<ForgingPage />} />
+          <Route
+            path="/forging"
+            element={<ForgingPage data={data} dispatch={dispatchData} />}
+          />
           <Route path="/calc" element={<CalcPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

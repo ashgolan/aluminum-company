@@ -24,7 +24,7 @@ export default function Delete_Item({
       });
       setFetchingStatus({ loading: true, error: false });
       const res = await axios.delete(
-        `https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany/${itemId}`,
+        `https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory/${itemId}`,
         itemsValues
       );
       if (!res.statusText === "OK") throw Error();

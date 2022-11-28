@@ -19,7 +19,7 @@ export default function Items_Table({
   const [itemsValues, setItemsValues] = useState({
     number: "",
     desc: "",
-    kind: "",
+    category: "",
     weight: "",
     length: "",
     image: null,
@@ -33,7 +33,7 @@ export default function Items_Table({
         return {
           number: thisItem.number,
           desc: thisItem.desc,
-          kind: thisItem.kind,
+          category: thisItem.category,
           weight: thisItem.weight,
           length: thisItem.length,
           image: thisItem.image,
@@ -64,13 +64,13 @@ export default function Items_Table({
           }}
         ></input>
         <input
-          id="kind"
+          id="category"
           className="input_show_item"
           disabled={changeStatus.disabled}
-          value={itemsValues.kind}
+          value={itemsValues.category}
           onChange={(e) => {
             setItemsValues((prev) => {
-              return { ...prev, kind: e.target.value };
+              return { ...prev, category: e.target.value };
             });
           }}
         ></input>

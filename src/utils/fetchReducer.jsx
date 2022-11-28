@@ -2,6 +2,7 @@ export const INITIAL_STATE = {
   inventory: [],
   bids: [],
   forging: [],
+  calcParams: [],
 };
 
 const FETCH_ALL_DATA = (state, configData) => {
@@ -13,9 +14,6 @@ const ADD = (state, configObj) => {
     [configObj.type]: [...state[configObj.type], configObj.data],
   };
 };
-// const EDIT = (state, updatedData) => {
-//   return { ...state, inventory: updatedData };
-// };
 const EDIT = (state, configObj) => {
   return { ...state, [configObj.type]: configObj.updateData };
 };

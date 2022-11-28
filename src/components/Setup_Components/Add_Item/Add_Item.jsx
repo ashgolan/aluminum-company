@@ -10,7 +10,7 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
   const [itemsValues, setItemsValues] = useState({
     number: "",
     desc: "",
-    kind: "",
+    category: "",
     weight: "",
     length: "",
     image: null,
@@ -20,7 +20,7 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
     try {
       setFetchingStatus({ loading: true, error: false });
       const { data } = await axios.post(
-        "https://6374adb808104a9c5f85d1fb.mockapi.io/aluminumCompany",
+        "https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory",
         itemsValues
       );
       dispatch({
@@ -91,16 +91,16 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
           value={itemsValues.length}
         ></input>
         <input
-          id="kind"
+          id="category"
           required
           className="add_item"
           placeholder="סוג"
           onChange={(e) =>
             setItemsValues((prev) => {
-              return { ...prev, kind: e.target.value };
+              return { ...prev, category: e.target.value };
             })
           }
-          value={itemsValues.kind}
+          value={itemsValues.category}
         ></input>
         <input
           id="desc"

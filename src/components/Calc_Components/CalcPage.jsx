@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function CalcPage() {
-  return <div>CalcPage</div>;
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+  return <div></div>;
 }

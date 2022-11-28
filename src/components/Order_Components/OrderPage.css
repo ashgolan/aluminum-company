@@ -19,16 +19,17 @@
 }
 .bid-selection {
   padding: 1% 5%;
-  border: none;
+  /* border: none; */
   border-radius: 10px;
-  background-color: rgb(148, 141, 37);
+  border: 1px rgb(148, 141, 37) solid;
   font-size: 1.1rem;
   margin: 1%;
-  color: rgb(255, 255, 255);
+  color: rgb(6, 47, 122);
   text-align: center;
 }
 .titles {
-  background-color: lightgoldenrodyellow;
+  border: 1px rgb(148, 141, 37) solid;
+  /* background-color: rgb(219, 217, 181); */
   color: brown;
   font-weight: bold;
 }
