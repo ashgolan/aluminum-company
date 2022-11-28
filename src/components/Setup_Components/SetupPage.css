@@ -9,14 +9,21 @@
 .loader {
   width: 48px;
   height: 48px;
-  border: 5px dotted rgb(45, 96, 173);
+  border: 5px dotted rgb(73, 85, 102);
   border-radius: 50%;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
 }
-
+i {
+  font-size: 3rem;
+}
+.head {
+  background-color: rgb(212, 212, 126);
+  color: brown;
+  font-weight: bold;
+}
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

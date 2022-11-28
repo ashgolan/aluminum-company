@@ -3,7 +3,6 @@ import { useRef } from "react";
 import "./BidRow.css";
 export default function BidRow({ numOfRow, setIsFilledStatus }) {
   const bidForm = useRef();
-  //   const totalRef = useRef();
 
   const [itemInRow, setItemInRow] = useState({
     number: "",
@@ -18,9 +17,6 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
   const checkHandler = (e) => {
     const isFilled = validation();
     if (isFilled) {
-      //   setItemInRow((prev) => {
-      //     return { ...prev, totalWeight: totalRef.current.value };
-      //   });
       e.target.checked
         ? localStorage.setItem(`row${numOfRow + 1}`, JSON.stringify(itemInRow))
         : localStorage.removeItem(`row${numOfRow + 1}`);
@@ -43,16 +39,10 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
     <form ref={bidForm} className="row">
       <input type="checkbox" onClick={(e) => checkHandler(e)} />
       <input
-        // ref={totalRef}
         name="totalWeight"
         disabled
         className="input_box total"
-        value={itemInRow.quantity * itemInRow.weight}
-        onChange={(e) =>
-          setItemInRow((prev) => {
-            return { ...prev, totalWeight: e.target.value };
-          })
-        }
+        value={itemInRow.totalWeight}
       ></input>
       <input
         name="weight"
@@ -61,7 +51,13 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
         value={itemInRow.weight}
         onChange={(e) =>
           setItemInRow((prev) => {
-            return { ...prev, weight: e.target.value };
+            return {
+              ...prev,
+              totalWeight: prev.quantity
+                ? prev.quantity * e.target.value
+                : e.target.value,
+              weight: e.target.value,
+            };
           })
         }
       ></input>
@@ -72,7 +68,13 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
         value={itemInRow.quantity}
         onChange={(e) =>
           setItemInRow((prev) => {
-            return { ...prev, quantity: e.target.value };
+            return {
+              ...prev,
+              totalWeight: prev.weight
+                ? prev.weight * e.target.value
+                : e.target.value,
+              quantity: e.target.value,
+            };
           })
         }
       ></input>

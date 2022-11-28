@@ -56,6 +56,7 @@ export default function OrderPage({ data: allData, dispatch }) {
         type: ACTION_TYPES.EDIT,
         payload: { type: "bids", updateData: allData.bids },
       });
+      setSelectedOption((prev) => null);
       console.log(allData);
     } catch {}
   };
@@ -79,20 +80,16 @@ export default function OrderPage({ data: allData, dispatch }) {
             שלח להזמנה
           </button>
         )}
+        {foundClient && <div>{foundClient.color}</div>}
         <select
           className="bid-selection"
           onChange={(e) => {
-            setSelectedOption((prev) => e.target.selectedOptions[0].id);
-            console.log(allData);
-            console.log(selectedOption);
-            console.log(foundClient);
+            setSelectedOption(e.target.selectedOptions[0].id);
           }}
           name=""
           //   value={!selectedOption && "הצעות בהמתנה"}
         >
-          <option value="הצעות בהמתנה" disabled>
-            הצעות בהמתנה
-          </option>
+          <option value="הצעות בהמתנה">הצעות בהמתנה</option>
           {bidsNames}
         </select>
       </header>

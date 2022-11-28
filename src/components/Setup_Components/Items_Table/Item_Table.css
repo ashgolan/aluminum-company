@@ -16,6 +16,7 @@
   border: none;
   background-color: rgb(48, 45, 45);
   color: whitesmoke;
+  text-align: right;
 }
 .message {
   width: 20%;
@@ -24,4 +25,7 @@
   color: brown;
   background-color: gold;
   margin: auto;
+}
+
+.Item_form_titles {
 }

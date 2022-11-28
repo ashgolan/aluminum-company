@@ -17,6 +17,7 @@ export default function BidPage({ dispatch, allData }) {
   const [bid, setBid] = useState({
     name: "",
     date: "",
+    color: "",
     isApproved: false,
     data: [],
   });
@@ -33,7 +34,6 @@ export default function BidPage({ dispatch, allData }) {
         type: ACTION_TYPES.ADD,
         payload: { type: "bids", data: data },
       });
-      console.log(allData);
       setFetchingStatus({ loading: false, error: false });
     } catch (e) {
       setFetchingStatus({ loading: false, error: true });
@@ -55,6 +55,7 @@ export default function BidPage({ dispatch, allData }) {
     uploadData({
       name: bid.name,
       date: bid.date,
+      color: bid.color,
       isApproved: bid.isApproved,
       data: allBidRows,
     });
@@ -71,16 +72,14 @@ export default function BidPage({ dispatch, allData }) {
       {message && <h5 className="message">ההצעה נשמרה בהצלחה</h5>}
       <form onSubmit={saveBidHandler} className="header_container">
         <input type="submit" className="save" value="שמירה" />
-        <button className="empty">ריקון</button>
         <input
           className="name"
+          placeholder="צבע"
+          value={bid.color}
           required
-          type="text"
-          placeholder="שם"
-          value={bid.name}
           onChange={(e) => {
             setBid((prev) => {
-              return { ...prev, name: e.target.value };
+              return { ...prev, color: e.target.value };
             });
           }}
         />
@@ -93,6 +92,18 @@ export default function BidPage({ dispatch, allData }) {
           onChange={(e) => {
             setBid((prev) => {
               return { ...prev, date: e.target.value };
+            });
+          }}
+        />
+        <input
+          className="name"
+          required
+          type="text"
+          placeholder="שם"
+          value={bid.name}
+          onChange={(e) => {
+            setBid((prev) => {
+              return { ...prev, name: e.target.value };
             });
           }}
         />

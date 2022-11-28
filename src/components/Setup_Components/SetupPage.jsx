@@ -42,6 +42,41 @@ export default function SetupPage({ dispatch, state }) {
           אין מוצרים .. תקלה בקריאת הנתונים
         </h5>
       )}
+      <div>
+        <form className="Item_form">
+          <i className="fa-regular fa-image"></i>
+          <input
+            id="weight"
+            className="input_show_item head"
+            value="משקל"
+            disabled
+          ></input>
+          <input
+            id="kind"
+            className="input_show_item head"
+            value="סוג"
+            disabled
+          ></input>
+          <input
+            id="desc"
+            className="input_show_item head"
+            value="תאור"
+            disabled
+          ></input>
+          <input
+            id="number"
+            className="input_show_item head"
+            value="מספר"
+            disabled
+          ></input>
+          <button style={{ visibility: "hidden" }} className="edit_btn">
+            edit
+          </button>
+          <button style={{ visibility: "hidden" }} className="delete_btn">
+            delete
+          </button>
+        </form>
+      </div>
       {(!fetchingStatus.loading || state.inventory.length) &&
         state.inventory.map((item) => {
           return (
