@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRef } from "react";
-
+import "./ForgingRow.css";
 export default function ForgingRow({ numOfRow }) {
   const [forgingItemInRow, setForgingItemInRow] = useState({
     product: "",
@@ -34,7 +34,7 @@ export default function ForgingRow({ numOfRow }) {
   };
 
   return (
-    <form ref={forgingBidForm} className="row">
+    <form ref={forgingBidForm} className="forgingForm">
       <input
         type="checkbox"
         onChange={(e) => {

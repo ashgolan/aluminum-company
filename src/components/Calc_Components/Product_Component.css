@@ -1,0 +1,53 @@
+.calc_row {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.calc-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.width_heightInputs {
+  width: 30%;
+  padding: 1.5%;
+  border: 1px rgb(148, 141, 37) solid;
+  text-align: right;
+}
+.productName {
+  font-size: 2rem;
+}
+.CalcHeader_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2% 0;
+}
+.calc_row div {
+  padding: 1%;
+  flex: 1 1 10%;
+  border: none;
+  background-color: rgb(48, 45, 45);
+  margin: 0.05rem;
+  color: whitesmoke;
+  text-align: right;
+}
+.calc_row .size-box {
+  color: gold;
+  text-align: center;
+}
+.head div {
+  color: gold;
+}
+
+.line-under-form {
+  width: 70%;
+  height: 0.2rem;
+  background-color: brown;
+  margin: 1% auto;
+}

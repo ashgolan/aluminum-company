@@ -1,23 +1,23 @@
-.bidRow {
+.orderRow {
   /* width: 80%; */
   display: flex;
   justify-content: center;
   margin: 0.5rem 0;
 }
-.bidRow div {
+.orderRow div {
   width: 10rem;
   padding: 0.5rem;
   font-size: 0.9rem;
   border: 1px rgb(202, 196, 196) dotted;
   text-align: right;
 }
-.bid-container {
+.order-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.bid-selection {
+.order-selection {
   padding: 1% 5%;
   /* border: none; */
   border-radius: 10px;
@@ -33,14 +33,14 @@
   color: brown;
   font-weight: bold;
 }
-.header {
+.orderheader {
   width: 100%;
   display: flex;
   justify-content: space-around;
   margin: 1%;
   align-items: center;
 }
-.header i {
+.orderheader i {
   font-size: 2rem;
   padding: 1% 5%;
   color: green;

@@ -1,8 +1,45 @@
+import axios from "axios";
 import React, { useEffect } from "react";
+import { useContext } from "react";
+import { FetchingStatus } from "../../utils/context";
+import { ACTION_TYPES } from "../../utils/dataActionTypes";
+import Product_Component from "./Product_Component";
 
-export default function CalcPage() {
+export default function CalcPage({ data, dispatch }) {
+  const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
+
   useEffect(() => {
+    const fetch = async () => {
+      try {
+        setFetchingStatus({ loading: true, error: false });
+        const { data } = await axios.get(
+          "https://6384bd7c3fa7acb14fff0d13.mockapi.io/calc"
+        );
+        dispatch({
+          type: ACTION_TYPES.FETCH_ALL_DATA,
+          payload: { type: "calc", setupData: data },
+        });
+
+        setFetchingStatus({ loading: false, error: false });
+      } catch {
+        setFetchingStatus({ loading: false, error: true });
+      }
+    };
+    fetch();
     localStorage.clear();
   }, []);
-  return <div></div>;
+
+  return (
+    <div>
+      {data.calc.map((product, index) => {
+        return (
+          <Product_Component
+            data={product}
+            dispatch={dispatch}
+            key={`product${index}`}
+          />
+        );
+      })}
+    </div>
+  );
 }

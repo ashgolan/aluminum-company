@@ -78,7 +78,10 @@ function App() {
             path="/forging"
             element={<ForgingPage data={data} dispatch={dispatchData} />}
           />
-          <Route path="/calc" element={<CalcPage />} />
+          <Route
+            path="/calc"
+            element={<CalcPage data={data} dispatch={dispatchData} />}
+          />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </FetchingStatus.Provider>

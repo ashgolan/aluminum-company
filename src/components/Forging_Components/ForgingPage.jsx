@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
 import ForgingRow from "./ForgingRow";
-
+import "./ForgingPage.css";
 export default function ForgingPage({ data, dispatch }) {
   const navigate = useNavigate();
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
@@ -63,7 +63,7 @@ export default function ForgingPage({ data, dispatch }) {
     }, 1000);
   };
   return (
-    <div className="bid-container" style={{ width: "70%", margin: "auto" }}>
+    <div className="forging-container" style={{ width: "70%", margin: "auto" }}>
       {message && <h5 className="message">ההזמנה נשמרה בהצלחה</h5>}
       <form onSubmit={saveBidHandler} className="header_container">
         <input type="submit" className="save" value="שמירה" />
@@ -109,7 +109,7 @@ export default function ForgingPage({ data, dispatch }) {
       <img
         src="/addItem.png"
         alt=""
-        className="addWRow_btn"
+        className="addRow_btn"
         onClick={() => {
           setNumOfRows((prev) => prev + 1);
         }}

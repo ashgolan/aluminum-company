@@ -2,7 +2,7 @@ export const INITIAL_STATE = {
   inventory: [],
   bids: [],
   forging: [],
-  calcParams: [],
+  calc: [],
 };
 
 const FETCH_ALL_DATA = (state, configData) => {

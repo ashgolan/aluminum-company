@@ -1,0 +1,13 @@
+.forging-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addRow_btn {
+  width: 7%;
+  padding: 1%;
+  cursor: pointer;
+  margin: auto;
+}

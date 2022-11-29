@@ -36,7 +36,7 @@ export default function OrderPage({ data: allData, dispatch }) {
     foundClient.isApproved === isApproved &&
     foundClient.data.map((bidRow, index) => {
       return (
-        <form key={`bidRow${index}`} className="bidRow">
+        <form key={`bidRow${index}`} className="orderRow">
           <div>{bidRow.totalWeight}</div>
           <div>{bidRow.weight}</div>
           <div>{bidRow.quantity}</div>
@@ -69,8 +69,8 @@ export default function OrderPage({ data: allData, dispatch }) {
     }
   };
   return (
-    <div className="bid-container">
-      <header className="header">
+    <div className="order-container">
+      <header className="orderheader">
         <i
           onClick={() => {
             setSelectedOption(null);
@@ -100,7 +100,8 @@ export default function OrderPage({ data: allData, dispatch }) {
           </div>
         )}
         <select
-          className="bid-selection"
+          className="order-selection"
+          defaultValue={"בחר"}
           onChange={(e) => {
             setSelectedOption(e.target.selectedOptions[0].id);
           }}
@@ -111,7 +112,7 @@ export default function OrderPage({ data: allData, dispatch }) {
           {bidsNames}
         </select>
       </header>
-      <form className="bidRow titles">
+      <form className="orderRow titles">
         <div>סה"כ</div>
         <div>משקל</div>
         <div>כמות</div>
