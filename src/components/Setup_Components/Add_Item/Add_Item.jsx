@@ -1,11 +1,12 @@
 import axios from "axios";
-import React from "react";
+import React, { useRef } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { FetchingStatus } from "../../../utils/context";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
 import "./Add_item.css";
 export default function Add_Item({ setaddItemToggle, state, dispatch }) {
+  const fileInput = useRef();
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [itemsValues, setItemsValues] = useState({
     number: "",
@@ -55,7 +56,8 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
         <input
           type="file"
           id="image"
-          className="add_item"
+          style={{ display: "none" }}
+          ref={fileInput}
           accept="image/png, image/jpeg"
           onInput={(e) => {
             setItemsValues((prev) => {
@@ -64,7 +66,15 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
           }}
         />
       </div>
-
+      <img
+        style={{ width: "5%", cursor: "pointer", margin: "1% auto" }}
+        src="../uploadImage2.png"
+        alt=""
+        onClick={(e) => {
+          e.preventDefault();
+          fileInput.current.click();
+        }}
+      />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <input
           id="weight"
@@ -130,13 +140,9 @@ export default function Add_Item({ setaddItemToggle, state, dispatch }) {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "1%" }}
       >
-        <input
-          className="confirm_addItem"
-          type="submit"
-          value="Confirm"
-        ></input>
+        <input className="confirm_addItem" type="submit" value="אישור"></input>
         <button className="remove_addItem" onClick={cancelAddingItem}>
-          Remove
+          הסרה
         </button>
       </div>
     </form>

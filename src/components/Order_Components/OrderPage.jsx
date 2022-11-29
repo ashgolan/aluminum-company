@@ -8,14 +8,17 @@ export default function OrderPage({ data: allData, dispatch }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isApproved, setIsApproved] = useState(false);
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
+
   useEffect(() => {
     localStorage.clear();
   }, []);
+
   const filtered = allData.bids.filter((clientBid) => {
     return clientBid.isApproved === isApproved;
   });
 
   const bidsNames = filtered.map((bid, index) => {
+    console.log(bid);
     return (
       <option
         id={bid.id}
@@ -41,7 +44,11 @@ export default function OrderPage({ data: allData, dispatch }) {
           <div>{bidRow.weight}</div>
           <div>{bidRow.quantity}</div>
           <div>{bidRow.length}</div>
-          <div>{bidRow.image}</div>
+          <img
+            style={{ padding: bidRow.image !== "" && "0.2% 4%" }}
+            alt=""
+            src={`.${bidRow.image}`}
+          ></img>
           <div>{bidRow.category}</div>
           <div>{bidRow.desc}</div>
           <div>{bidRow.number}</div>
@@ -99,6 +106,11 @@ export default function OrderPage({ data: allData, dispatch }) {
             צבע : {foundClient.color}
           </div>
         )}
+        {foundClient && (
+          <label style={{ fontSize: "2rem", color: "brown" }}>
+            {foundClient.clientName}
+          </label>
+        )}
         <select
           className="order-selection"
           defaultValue={"בחר"}
@@ -106,9 +118,9 @@ export default function OrderPage({ data: allData, dispatch }) {
             setSelectedOption(e.target.selectedOptions[0].id);
           }}
           name=""
-          //   value={!selectedOption && "הצעות בהמתנה"}
+          value={!selectedOption && "בחר הצעה"}
         >
-          <option value="הצעות בהמתנה">הצעות בהמתנה</option>
+          <option value="בחר הצעה">בחר הצעה</option>
           {bidsNames}
         </select>
       </header>

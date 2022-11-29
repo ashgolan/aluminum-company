@@ -16,13 +16,14 @@
   box-sizing: border-box;
   animation: rotation 2s linear infinite;
 }
-i {
-  font-size: 3rem;
+.imageHead {
+  width: 3rem;
 }
 .head {
-  background-color: rgb(212, 212, 126);
+  background-color: rgb(243, 243, 205);
   color: brown;
   font-weight: bold;
+  font-size: 1rem;
 }
 @keyframes rotation {
   0% {

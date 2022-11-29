@@ -84,14 +84,11 @@ export default function Product_Component({ allData, productData, dispatch }) {
             className="width_heightInputs"
             value={input.height}
             type="number"
-            placeholder="גובה"
+            placeholder="גובה משקוף"
             onChange={(e) => {
               setInput((prev) => {
                 return { ...prev, height: e.target.value };
               });
-              console.log(productData);
-
-              console.log(input.height, input.width);
             }}
           />
           <input
@@ -99,7 +96,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
             className="width_heightInputs"
             value={input.width}
             type="number"
-            placeholder="רוחב"
+            placeholder="רוחב משקוף"
             onChange={(e) => {
               setInput((prev) => {
                 return { ...prev, width: e.target.value };

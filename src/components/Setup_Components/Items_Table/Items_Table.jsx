@@ -11,8 +11,8 @@ export default function Items_Table({
   dispatch,
 }) {
   const [changeStatus, setChangeStatus] = useState({
-    editText: "Edit",
-    delete: "Delete",
+    editText: "עריכה",
+    delete: "מחיקה",
     disabled: true,
     itemId: null,
   });

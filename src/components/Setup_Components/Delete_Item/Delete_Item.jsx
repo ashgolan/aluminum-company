@@ -49,19 +49,19 @@ export default function Delete_Item({
 
     setChangeStatus((prev) => {
       return {
-        editText: prev.delete === "Delete" ? "Cancel" : "Edit",
-        delete: prev.delete === "Delete" ? "Confirm" : "Delete",
+        editText: prev.delete === "מחיקה" ? "ביטול" : "עריכה",
+        delete: prev.delete === "מחיקה" ? "אישור" : "מחיקה",
         disabled: true,
-        itemId: prev.delete === "Delete" ? itemId : null,
+        itemId: prev.delete === "מחיקה" ? itemId : null,
       };
     });
-    if (changeStatus.delete === "Cancel") {
+    if (changeStatus.delete === "ביטול") {
       const getTempObjFromLs = JSON.parse(localStorage.getItem("itemData"));
       setItemsValues(getTempObjFromLs);
       setMessage({ status: false, message: null });
       localStorage.removeItem("itemData");
     }
-    if (changeStatus.delete === "Confirm") {
+    if (changeStatus.delete === "עריכה") {
       deleteData();
     }
     setItemInChange(!itemInChange);

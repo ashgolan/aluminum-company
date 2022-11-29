@@ -3,7 +3,7 @@ import { useRef } from "react";
 import "./BidRow.css";
 export default function BidRow({ numOfRow, setIsFilledStatus }) {
   const bidForm = useRef();
-
+  const fileInput = useRef();
   const [itemInRow, setItemInRow] = useState({
     number: "",
     desc: "",
@@ -89,14 +89,26 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
           })
         }
       ></input>
+
       <input
-        name="image"
         type="file"
-        className="input_box"
+        id="image"
+        style={{ display: "none" }}
+        ref={fileInput}
+        accept="image/png, image/jpeg"
         onInput={(e) => {
           setItemInRow((prev) => {
             return { ...prev, image: "/images/" + e.target.files[0].name };
           });
+        }}
+      />
+      <img
+        style={{ width: "4%", cursor: "pointer", margin: "0 1%" }}
+        src="../uploadImage2.png"
+        alt=""
+        onClick={(e) => {
+          e.preventDefault();
+          fileInput.current.click();
         }}
       />
       <input

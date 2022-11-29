@@ -4,7 +4,8 @@
   justify-content: center;
   margin: 0.5rem 0;
 }
-.orderRow div {
+.orderRow div,
+.orderRow img {
   width: 10rem;
   padding: 0.5rem;
   font-size: 0.9rem;
@@ -19,17 +20,16 @@
 }
 .order-selection {
   padding: 1% 5%;
-  /* border: none; */
   border-radius: 10px;
   border: 1px rgb(148, 141, 37) solid;
   font-size: 1.1rem;
   margin: 1%;
   color: rgb(6, 47, 122);
   text-align: center;
+  cursor: pointer;
 }
 .titles {
   border: 1px rgb(148, 141, 37) solid;
-  /* background-color: rgb(219, 217, 181); */
   color: brown;
   font-weight: bold;
 }
@@ -44,6 +44,7 @@
   font-size: 2rem;
   padding: 1% 5%;
   color: green;
+  cursor: pointer;
 }
 .approving {
   border: none;
@@ -52,4 +53,5 @@
   height: 20%;
   padding: 1% 5%;
   font-size: 1rem;
+  cursor: pointer;
 }

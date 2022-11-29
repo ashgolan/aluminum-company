@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        "https://6374adb808104a9c5f85d1fb.mockapi.io/Bids"
+        "https://6384bd7c3fa7acb14fff0d13.mockapi.io/bids"
       );
       dispatchData({
         type: ACTION_TYPES.FETCH_ALL_DATA,

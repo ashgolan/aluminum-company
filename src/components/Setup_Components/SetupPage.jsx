@@ -44,7 +44,7 @@ export default function SetupPage({ dispatch, state }) {
       )}
       <div>
         <form className="Item_form">
-          <i className="fa-regular fa-image"></i>
+          <img className="imageHead" src="../draw.png" alt="" />
           <input
             id="weight"
             className="input_show_item head"

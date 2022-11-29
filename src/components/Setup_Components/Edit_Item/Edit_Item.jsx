@@ -47,10 +47,10 @@ export default function Edit_Item({
   const editHandler = (e) => {
     e.preventDefault();
 
-    changeStatus.editText === "Edit" &&
+    changeStatus.editText === "עריכה" &&
       localStorage.setItem("itemData", JSON.stringify(itemsValues));
 
-    if (changeStatus.editText === "Confirm") {
+    if (changeStatus.editText === "אישור") {
       const haveAnEmptyValues = checkInputsValues();
       if (haveAnEmptyValues) {
         setMessage({ status: true, message: "צריך למלא את כל הנתונים" });
@@ -66,10 +66,10 @@ export default function Edit_Item({
     setItemInChange(!itemInChange);
     setChangeStatus((prev) => {
       return {
-        editText: prev.editText === "Edit" ? "Confirm" : "Edit",
-        delete: prev.editText === "Edit" ? "Cancel" : "Delete",
-        disabled: prev.editText === "Edit" ? false : true,
-        itemId: prev.editText === "Edit" ? itemId : null,
+        editText: prev.editText === "עריכה" ? "אישור" : "עריכה",
+        delete: prev.editText === "עריכה" ? "ביטול" : "מחיקה",
+        disabled: prev.editText === "עריכה" ? false : true,
+        itemId: prev.editText === "עריכה" ? itemId : null,
       };
     });
   };
