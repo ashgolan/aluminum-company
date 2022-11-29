@@ -12,9 +12,13 @@
   justify-content: center;
   margin: auto;
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .width_heightInputs {
-  width: 30%;
+  width: 15%;
   padding: 1.5%;
   border: 1px rgb(148, 141, 37) solid;
   text-align: right;
@@ -23,25 +27,46 @@
   font-size: 2rem;
 }
 .CalcHeader_container {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 2% 0;
 }
-.calc_row div {
+.edit-container,
+.save-container {
+  cursor: pointer;
+  width: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.edit-container i,
+.save-container i {
+  margin-left: 5px;
+  font-size: 2rem;
+  color: rgb(24, 46, 80);
+}
+
+.calc_div,
+.size-box {
+  width: 10%;
+  height: 6vh;
   padding: 1%;
   flex: 1 1 10%;
-  border: none;
+  border: 1px whitesmoke solid;
   background-color: rgb(48, 45, 45);
-  margin: 0.05rem;
   color: whitesmoke;
   text-align: right;
+}
+.calc_row .wCanaf_Param {
+  width: 5%;
 }
 .calc_row .size-box {
   color: gold;
   text-align: center;
 }
-.head div {
+.calcHeader div {
   color: gold;
 }
 

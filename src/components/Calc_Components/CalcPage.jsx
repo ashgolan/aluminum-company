@@ -34,7 +34,8 @@ export default function CalcPage({ data, dispatch }) {
       {data.calc.map((product, index) => {
         return (
           <Product_Component
-            data={product}
+            productData={product}
+            allData={data}
             dispatch={dispatch}
             key={`product${index}`}
           />

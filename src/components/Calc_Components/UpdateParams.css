@@ -1,0 +1,18 @@
+.showEditor {
+  display: flex;
+}
+.hideEditor {
+  display: none;
+}
+
+.wCanaf,
+.wCanafParam {
+  width: 5%;
+  flex: 1 1 4.5%;
+}
+
+.edit-header {
+  background-color: rgb(255, 255, 255);
+  color: brown;
+  outline: 1px brown solid;
+}
