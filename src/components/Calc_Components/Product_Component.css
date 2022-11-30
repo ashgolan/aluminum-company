@@ -12,6 +12,15 @@
   justify-content: center;
   margin: auto;
 }
+.chart-container {
+  width: 70%;
+  height: 30vh;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -78,4 +87,12 @@ input::-webkit-inner-spin-button {
   height: 0.2rem;
   background-color: brown;
   margin: 1% auto;
+}
+.one,
+.two,
+.three,
+.four {
+  width: 100%;
+  height: 100%;
+  background-color: red;
 }

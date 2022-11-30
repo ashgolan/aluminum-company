@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   margin: 0.5rem 0;
+  width: 80%;
 }
 .orderRow div,
 .orderRow img {
@@ -16,6 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 .order-selection {
   width: 20%;

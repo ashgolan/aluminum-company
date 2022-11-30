@@ -13,6 +13,7 @@
 .nav {
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   color: whitesmoke;
   width: 90%;

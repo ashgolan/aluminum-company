@@ -1,14 +1,16 @@
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
+
 import "./OrderPage.css";
+
 export default function OrderPage({ data: allData, dispatch }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isApproved, setIsApproved] = useState(false);
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
-
+  const PDFExportComponent = useRef(null);
   useEffect(() => {
     localStorage.clear();
   }, []);

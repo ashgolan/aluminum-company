@@ -7,7 +7,6 @@ function NavBar() {
       <ul className="nav">
         <Link to={"/"}>
           <img className="logo" src="/logo6.png" alt="" />
-          {/* <li className="logo">אלומניום התפוח</li> */}
         </Link>
         <Link to={"/calc"}>מחשבון</Link>
         <Link to={"/forging"}>פרזול</Link>

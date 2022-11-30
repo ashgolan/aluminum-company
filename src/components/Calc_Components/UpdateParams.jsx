@@ -104,6 +104,11 @@ export default function UpdateParams({
           })
         }
       ></input>
+      <img
+        style={{ width: "4%", visibility: "hidden" }}
+        src="/widthHeight.png"
+        alt=""
+      />
     </div>
   );
 }

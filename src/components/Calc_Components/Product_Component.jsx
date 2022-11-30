@@ -9,7 +9,7 @@ import { FetchingStatus } from "../../utils/context";
 
 export default function Product_Component({ allData, productData, dispatch }) {
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
-
+  const [showChart, setShowChart] = useState(false);
   const [input, setInput] = useState({
     width: "",
     height: "",
@@ -19,6 +19,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
     size2: 28,
     size3: 0,
   });
+  const [chartSize, setChartSize] = useState(null);
   const [changeParams, setChangeParams] = useState(false);
 
   const [paramsData, setParamsData] = useState({
@@ -124,6 +125,11 @@ export default function Product_Component({ allData, productData, dispatch }) {
           <div className="calc_div">ג.תריס</div>
           <div className="calc_div">ר.זכוכית</div>
           <div className="calc_div">ג.זכוכית </div>
+          <img
+            style={{ width: "4%", visibility: "hidden" }}
+            src="/widthHeight.png"
+            alt=""
+          />
         </div>
         <div className="calc_row">
           <input
@@ -206,6 +212,16 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 paramsData.hZchochet
               ).toFixed(1)}
           </div>
+          <img
+            onClick={(e) => {
+              e.preventDefault();
+              setChartSize(() => size.size1);
+              setShowChart(() => true);
+            }}
+            style={{ width: "4%", cursor: "pointer" }}
+            src="/widthHeight.png"
+            alt=""
+          />
         </div>
 
         <div className="calc_row">
@@ -219,7 +235,6 @@ export default function Product_Component({ allData, productData, dispatch }) {
               });
             }}
           ></input>
-
           <div className="calc_div">
             {input.width &&
               input.height &&
@@ -289,6 +304,16 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 paramsData.hZchochet
               ).toFixed(1)}
           </div>
+          <img
+            onClick={(e) => {
+              e.preventDefault();
+              setChartSize(() => size.size2);
+              setShowChart(() => true);
+            }}
+            style={{ width: "4%", cursor: "pointer" }}
+            src="/widthHeight.png"
+            alt=""
+          />
         </div>
         <div className="calc_row">
           <input
@@ -301,7 +326,6 @@ export default function Product_Component({ allData, productData, dispatch }) {
               });
             }}
           ></input>
-
           <div className="calc_div">
             {input.width &&
               input.height &&
@@ -371,8 +395,317 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 paramsData.hZchochet
               ).toFixed(1)}
           </div>
+          <img
+            onClick={(e) => {
+              e.preventDefault();
+              setChartSize(() => size.size3);
+              setShowChart(() => true);
+            }}
+            style={{ width: "4%", cursor: "pointer" }}
+            src="/widthHeight.png"
+            alt=""
+          />
         </div>
       </form>
+      {showChart && (
+        <form className="chart-container">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "15%",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "25vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "25vh",
+                  lineHeight: "25vh",
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  border: "1px black dotted",
+                }}
+              >
+                כנף
+              </div>
+              <div
+                style={{
+                  width: "20%",
+                  height: "25vh",
+                  writingMode: "vertical-rl",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize &&
+                  +input.height - chartSize - paramsData.hCanaf}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "2vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "3vh",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize !== "" &&
+                  (
+                    (input.width - paramsData.wCanaf) / 2 +
+                    paramsData.wCanafParam
+                  ).toFixed(1)}
+              </div>
+              <div style={{ width: "20%", height: "3vh" }}></div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "15%",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "25vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "25vh",
+                  lineHeight: "25vh",
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  border: "1px black dotted",
+                }}
+              >
+                רשת
+              </div>
+              <div
+                style={{
+                  width: "20%",
+                  height: "25vh",
+                  writingMode: "vertical-rl",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize !== "" &&
+                  (
+                    +input.height -
+                    chartSize -
+                    paramsData.hCanaf +
+                    paramsData.hRechet
+                  ).toFixed(1)}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "2vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "3vh",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize !== "" &&
+                  (
+                    (input.width - paramsData.wCanaf) / 2 +
+                    paramsData.wCanafParam +
+                    paramsData.wRechet
+                  ).toFixed(1)}
+              </div>
+              <div style={{ width: "20%", height: "3vh" }}></div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "15%",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "25vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "25vh",
+                  lineHeight: "25vh",
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  border: "1px black dotted",
+                }}
+              >
+                תריס
+              </div>
+              <div
+                style={{
+                  width: "20%",
+                  height: "25vh",
+                  writingMode: "vertical-rl",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                input.height &&
+                chartSize &&
+                chartSize !== "" &&
+                chartSize !== 21
+                  ? (input.height - paramsData.hTreess).toFixed(1)
+                  : (input.height - paramsData.hTreess - 2).toFixed(1)}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "2vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "3vh",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize !== "" &&
+                  (input.width - paramsData.wTreess).toFixed(1)}
+              </div>
+              <div style={{ width: "20%", height: "3vh" }}></div>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "15%",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "25vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "25vh",
+                  lineHeight: "25vh",
+                  textAlign: "center",
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  border: "1px black dotted",
+                }}
+              >
+                זכוכית
+              </div>
+              <div
+                style={{
+                  width: "20%",
+                  height: "25vh",
+                  writingMode: "vertical-rl",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize !== "" &&
+                  (
+                    +input.height -
+                    chartSize -
+                    paramsData.hCanaf -
+                    paramsData.hZchochet
+                  ).toFixed(1)}
+              </div>
+            </div>
+            <div
+              style={{
+                width: "100%",
+                height: "2vh",
+                display: "flex",
+              }}
+            >
+              <div
+                style={{
+                  width: "80%",
+                  height: "3vh",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                {input.width &&
+                  input.height &&
+                  chartSize !== "" &&
+                  (
+                    (input.width - paramsData.wCanaf) / 2 +
+                    paramsData.wCanafParam -
+                    paramsData.wZchochet
+                  ).toFixed(1)}
+              </div>
+              <div style={{ width: "20%", height: "3vh" }}></div>
+            </div>
+          </div>
+          <i
+            style={{ fontSize: "2rem", cursor: "pointer" }}
+            className="fa-solid fa-eye-slash"
+            onClick={() => setShowChart(() => false)}
+          ></i>
+        </form>
+      )}
       <div className="line-under-form"></div>
     </div>
   );
