@@ -28,7 +28,7 @@ export default function CalcPage({ data, dispatch }) {
     };
     fetch();
     localStorage.clear();
-  }, []);
+  }, [dispatch, setFetchingStatus]);
 
   return (
     <div>

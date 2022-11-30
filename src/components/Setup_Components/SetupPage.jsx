@@ -33,7 +33,7 @@ export default function SetupPage({ dispatch, state }) {
       }
     };
     fetch();
-  }, []);
+  }, [dispatch, setFetchingStatus]);
 
   return (
     <div>

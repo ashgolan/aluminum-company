@@ -47,9 +47,7 @@ export default function ForgingPage({ dispatch }) {
       allForgingBidRows.push(JSON.parse(ls[item]));
     }
     setForgingBid((prev) => {
-      {
-        return { ...prev, data: allForgingBidRows };
-      }
+      return { ...prev, data: allForgingBidRows };
     });
     uploadData({
       name: forgingBid.name,

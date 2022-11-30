@@ -41,7 +41,7 @@ export default function ItemsTable({
       });
     };
     getData();
-  }, []);
+  }, [item.id, state.inventory]);
   return (
     <div>
       <form className="Item_form" key={`form${item.id}`}>

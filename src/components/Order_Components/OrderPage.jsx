@@ -64,7 +64,7 @@ export default function OrderPage({ data: allData, dispatch }) {
     try {
       foundClient.isApproved = true;
       setFetchingStatus({ loading: true, error: false });
-      const { data } = await axios.put(
+      await axios.put(
         `https://6384bd7c3fa7acb14fff0d13.mockapi.io/bids/${foundClient.id}`,
         foundClient
       );
