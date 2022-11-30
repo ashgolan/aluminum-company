@@ -20,7 +20,6 @@ const EDIT = (state, configObj) => {
 const DELETE = (state, updatedData) => {
   return { ...state, inventory: updatedData };
 };
-// eslint-disable-next-line
 export const fetchReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_ALL_DATA":
@@ -31,5 +30,7 @@ export const fetchReducer = (state, action) => {
       return EDIT(state, action.payload);
     case "DELETE":
       return DELETE(state, action.payload);
+    default:
+      return state;
   }
 };
