@@ -37,7 +37,12 @@ export default function BidRow({ numOfRow }) {
 
   return (
     <form ref={bidForm} className="row">
-      <input type="checkbox" onClick={(e) => checkHandler(e)} />
+      <input
+        style={{ width: "3%", color: "red", cursor: "pointer" }}
+        type="checkbox"
+        onClick={(e) => checkHandler(e)}
+      />
+
       <input
         name="totalWeight"
         disabled

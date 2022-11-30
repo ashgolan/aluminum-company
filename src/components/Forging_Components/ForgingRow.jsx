@@ -36,6 +36,7 @@ export default function ForgingRow({ numOfRow }) {
   return (
     <form ref={forgingBidForm} className="forgingForm">
       <input
+        style={{ width: "3%", color: "red", cursor: "pointer" }}
         type="checkbox"
         onChange={(e) => {
           checkHandler(e);
