@@ -1,0 +1,16 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 85vh;
+  background-image: url("/public/background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
+
+.welcome {
+  margin-bottom: 20%;
+  font-size: 2rem;
+}

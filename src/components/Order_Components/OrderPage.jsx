@@ -18,7 +18,6 @@ export default function OrderPage({ data: allData, dispatch }) {
   });
 
   const bidsNames = filtered.map((bid, index) => {
-    console.log(bid);
     return (
       <option
         id={bid.id}
@@ -70,7 +69,6 @@ export default function OrderPage({ data: allData, dispatch }) {
       });
       setFetchingStatus({ loading: false, error: false });
       setSelectedOption((prev) => null);
-      console.log(allData);
     } catch {
       setFetchingStatus({ loading: false, error: true });
     }
@@ -78,13 +76,15 @@ export default function OrderPage({ data: allData, dispatch }) {
   return (
     <div className="order-container">
       <header className="orderheader">
-        <i
+        <img
           onClick={() => {
             setSelectedOption(null);
             setIsApproved((prev) => !prev);
           }}
-          className="fa-solid fa-clock-rotate-left"
-        ></i>
+          src="/history.png"
+          alt=""
+        />
+
         {foundClient && !isApproved && (
           <button
             onClick={(e) => {
@@ -98,14 +98,22 @@ export default function OrderPage({ data: allData, dispatch }) {
         {foundClient && (
           <div
             style={{
+              width: "20%",
+              padding: "1% 5%",
+              borderRadius: " 10px",
+              border: "1px rgb(148, 141, 37) solid",
+              fontSize: " 1.1rem",
+              margin: "1%",
+              color: "rgb(6, 47, 122)",
+              textAlign: "center",
               fontWeight: "bold",
-              backgroundColor: "gold",
-              padding: "1%",
             }}
           >
-            צבע : {foundClient.color}
+            <label htmlFor=""> צבע</label>
+            {`  : ${foundClient.color}`}
           </div>
         )}
+
         {foundClient && (
           <label style={{ fontSize: "2rem", color: "brown" }}>
             {foundClient.clientName}
@@ -118,9 +126,11 @@ export default function OrderPage({ data: allData, dispatch }) {
             setSelectedOption(e.target.selectedOptions[0].id);
           }}
           name=""
-          value={!selectedOption && "בחר הצעה"}
+          value={isApproved ? "בחר הזמנה" : "בחר הצעה"}
         >
-          <option value="בחר הצעה">בחר הצעה</option>
+          <option value="בחר הצעה">
+            {isApproved ? "בחר הזמנה" : "בחר הצעה"}
+          </option>
           {bidsNames}
         </select>
       </header>

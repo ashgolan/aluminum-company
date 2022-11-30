@@ -23,6 +23,9 @@ input::-webkit-inner-spin-button {
   border: 1px rgb(148, 141, 37) solid;
   text-align: right;
 }
+.width_heightInputs::placeholder {
+  font-size: 1rem;
+}
 .productName {
   font-size: 2rem;
 }

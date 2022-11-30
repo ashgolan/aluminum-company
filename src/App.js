@@ -10,8 +10,8 @@ import ErrorPage from "./components/ErrorPage";
 import ForgingPage from "./components/Forging_Components/ForgingPage";
 import { fetchReducer, INITIAL_STATE } from "./utils/fetchReducer";
 import { FetchingStatus } from "./utils/context";
-import { useContext } from "react";
 import axios from "axios";
+import HomePage from "./components/HomePage";
 import { ACTION_TYPES } from "./utils/dataActionTypes";
 function App() {
   const [message, setMessage] = useState({ status: false, message: null });
@@ -48,8 +48,9 @@ function App() {
       )}
       <FetchingStatus.Provider value={[fetchingStatus, setFetchingStatus]}>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route
-            path="/"
+            path="/SetupPage"
             element={
               <SetupPage
                 dispatch={dispatchData}

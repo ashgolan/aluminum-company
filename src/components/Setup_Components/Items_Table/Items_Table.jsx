@@ -64,6 +64,17 @@ export default function Items_Table({
           }}
         ></input>
         <input
+          id="length"
+          className="input_show_item"
+          disabled={changeStatus.disabled}
+          value={itemsValues.length}
+          onChange={(e) => {
+            setItemsValues((prev) => {
+              return { ...prev, length: e.target.value };
+            });
+          }}
+        ></input>
+        <input
           id="category"
           className="input_show_item"
           disabled={changeStatus.disabled}

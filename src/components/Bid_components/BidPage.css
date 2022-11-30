@@ -1,4 +1,4 @@
-.save_btn {
+/* .save_btn {
   text-align: center;
   width: 25%;
   border: none;
@@ -6,7 +6,7 @@
   background-color: brown;
   color: whitesmoke;
   margin: 1% 0;
-}
+} */
 .bid_container {
   display: flex;
   flex-direction: column;
@@ -21,19 +21,20 @@
 
 .name,
 .date,
-.save,
-.empty {
+.save {
   color: rgb(102, 28, 28);
   padding: 1% 2%;
   margin: 1%;
   color: rgb(51, 46, 46);
+  text-align: right;
 }
 
 .save {
   border: none;
-  background-color: rgb(136, 138, 19);
-  color: white;
+  background-color: brown;
+  color: whitesmoke;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 .name::placeholder,
 .date::placeholder {

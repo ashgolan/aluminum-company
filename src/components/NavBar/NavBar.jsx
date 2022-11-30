@@ -5,12 +5,15 @@ function NavBar() {
   return (
     <div className="nav_container">
       <ul className="nav">
-        <li className="logo">אלומניום התפוח</li>
+        <Link to={"/"}>
+          <img className="logo" src="/logo6.png" alt="" />
+          {/* <li className="logo">אלומניום התפוח</li> */}
+        </Link>
         <Link to={"/calc"}>מחשבון</Link>
         <Link to={"/forging"}>פרזול</Link>
         <Link to={"/order"}>ביצוע הזמנות למפעל</Link>
         <Link to={"/bid"}>מילוי הצעה</Link>
-        <Link to={"/"}>
+        <Link to={"/SetupPage"}>
           <img className="setup_img" src="/setup.png" alt="" />
         </Link>
       </ul>

@@ -52,6 +52,12 @@ export default function SetupPage({ dispatch, state }) {
             disabled
           ></input>
           <input
+            id="length"
+            className="input_show_item head"
+            value="אורך"
+            disabled
+          ></input>
+          <input
             id="kind"
             className="input_show_item head"
             value="סוג"

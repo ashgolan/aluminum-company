@@ -35,7 +35,6 @@ export default function Product_Component({ allData, productData, dispatch }) {
   const saveParamsHandler = async (e) => {
     try {
       setFetchingStatus({ loading: true, error: false });
-      console.log(fetchingStatus);
       const { data } = await axios.put(
         `https://6384bd7c3fa7acb14fff0d13.mockapi.io/calc/${productData.id}`,
         { productName: productData.productName, params: paramsData }
@@ -86,6 +85,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
             type="number"
             placeholder="גובה משקוף"
             onChange={(e) => {
+              setChangeParams(false);
               setInput((prev) => {
                 return { ...prev, height: e.target.value };
               });
@@ -98,6 +98,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
             type="number"
             placeholder="רוחב משקוף"
             onChange={(e) => {
+              setChangeParams(false);
               setInput((prev) => {
                 return { ...prev, width: e.target.value };
               });

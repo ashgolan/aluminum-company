@@ -41,6 +41,7 @@ export default function BidRow({ numOfRow, setIsFilledStatus }) {
       <input
         name="totalWeight"
         disabled
+        placeholder={`סה"כ`}
         className="input_box total"
         value={itemInRow.totalWeight}
       ></input>

@@ -61,7 +61,7 @@ export default function Delete_Item({
       setMessage({ status: false, message: null });
       localStorage.removeItem("itemData");
     }
-    if (changeStatus.delete === "עריכה") {
+    if (changeStatus.delete === "אישור") {
       deleteData();
     }
     setItemInChange(!itemInChange);
