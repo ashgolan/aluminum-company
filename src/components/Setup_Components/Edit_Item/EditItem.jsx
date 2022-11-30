@@ -1,10 +1,10 @@
 import axios from "axios";
 import React from "react";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
-import "./Edit_Item.css";
+import "./EditItem.css";
 import { FetchingStatus } from "../../../utils/context";
 import { useContext } from "react";
-export default function Edit_Item({
+export default function EditItem({
   itemId,
   itemInChange,
   setItemInChange,
@@ -32,7 +32,7 @@ export default function Edit_Item({
   const updateData = async () => {
     try {
       setFetchingStatus({ loading: true, error: false });
-      const { data } = await axios.put(
+      await axios.put(
         `https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory/${itemId}`,
         itemsValues
       );

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { FetchingStatus } from "../../../utils/context";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
 import "./Add_item.css";
-export default function Add_Item({ setaddItemToggle, dispatch }) {
+export default function AddItem({ setaddItemToggle, dispatch }) {
   const fileInput = useRef();
   // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);

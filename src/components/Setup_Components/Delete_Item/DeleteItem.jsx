@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ACTION_TYPES } from "../../../utils/dataActionTypes";
 import "./Delete_Item.css";
 import { FetchingStatus } from "../../../utils/context";
-export default function Delete_Item({
+export default function DeleteItem({
   itemInChange,
   setItemInChange,
   itemId,

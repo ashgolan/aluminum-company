@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import Delete_Item from "../Delete_Item/Delete_Item";
-import Edit_Item from "../Edit_Item/Edit_Item";
+import DeleteItem from "../Delete_Item/DeleteItem";
+import EditItem from "../Edit_Item/EditItem";
 import "./Item_Table.css";
-export default function Items_Table({
+export default function ItemsTable({
   item,
   itemInChange,
   setItemInChange,
@@ -108,7 +108,7 @@ export default function Items_Table({
           }}
         ></input>
         {(!itemInChange || changeStatus.itemId === item.id) && (
-          <Edit_Item
+          <EditItem
             setMessage={setMessage}
             itemId={item.id}
             itemInChange={itemInChange}
@@ -118,10 +118,10 @@ export default function Items_Table({
             itemsValues={itemsValues}
             dispatch={dispatch}
             state={state}
-          ></Edit_Item>
+          ></EditItem>
         )}
         {(!itemInChange || changeStatus.itemId === item.id) && (
-          <Delete_Item
+          <DeleteItem
             setMessage={setMessage}
             itemInChange={itemInChange}
             setItemInChange={setItemInChange}
@@ -132,7 +132,7 @@ export default function Items_Table({
             setItemsValues={setItemsValues}
             dispatch={dispatch}
             state={state}
-          ></Delete_Item>
+          ></DeleteItem>
         )}
       </form>
       {message.status && <h5 className="message">{message.message}</h5>}

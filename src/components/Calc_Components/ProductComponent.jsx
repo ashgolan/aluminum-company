@@ -1,5 +1,5 @@
 import React from "react";
-import "./Product_Component.css";
+import "./ProductComponent.css";
 import { useState } from "react";
 import UpdateParams from "./UpdateParams";
 import axios from "axios";
@@ -7,7 +7,7 @@ import { ACTION_TYPES } from "../../utils/dataActionTypes";
 import { useContext } from "react";
 import { FetchingStatus } from "../../utils/context";
 
-export default function Product_Component({ allData, productData, dispatch }) {
+export default function ProductComponent({ allData, productData, dispatch }) {
   // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [showChart, setShowChart] = useState(false);
@@ -37,7 +37,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
   const saveParamsHandler = async (e) => {
     try {
       setFetchingStatus({ loading: true, error: false });
-      const { data } = await axios.put(
+      await axios.put(
         `https://6384bd7c3fa7acb14fff0d13.mockapi.io/calc/${productData.id}`,
         { productName: productData.productName, params: paramsData }
       );

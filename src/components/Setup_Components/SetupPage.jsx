@@ -2,9 +2,9 @@ import axios from "axios";
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
-import Add_Item from "./Add_Item/Add_Item";
-import Add_Item_Btn from "./Add_Item/Add_Item_Btn";
-import Items_Table from "./Items_Table/Items_Table";
+import AddItem from "./Add_Item/AddItem";
+import AddItemBtn from "./Add_Item/AddItemBtn";
+import ItemsTable from "./Items_Table/ItemsTable";
 import { FetchingStatus } from "../../utils/context";
 import "./SetupPage.css";
 
@@ -86,25 +86,25 @@ export default function SetupPage({ dispatch, state }) {
       {(!fetchingStatus.loading || state.inventory.length) &&
         state.inventory.map((item) => {
           return (
-            <Items_Table
+            <ItemsTable
               key={`item${item.id}`}
               item={item}
               state={state}
               dispatch={dispatch}
               itemInChange={itemInChange}
               setItemInChange={setItemInChange}
-            ></Items_Table>
+            ></ItemsTable>
           );
         })}
       {!addItemToggle.formVisible && !fetchingStatus.error && (
-        <Add_Item_Btn setaddItemToggle={setaddItemToggle}></Add_Item_Btn>
+        <AddItemBtn setaddItemToggle={setaddItemToggle}></AddItemBtn>
       )}
       {!addItemToggle.btnVisible && (
-        <Add_Item
+        <AddItem
           setaddItemToggle={setaddItemToggle}
           state={state}
           dispatch={dispatch}
-        ></Add_Item>
+        ></AddItem>
       )}
     </div>
   );

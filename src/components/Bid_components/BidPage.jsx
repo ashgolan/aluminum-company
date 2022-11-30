@@ -51,9 +51,7 @@ export default function BidPage({ dispatch }) {
       allBidRows.push(JSON.parse(ls[item]));
     }
     setBid((prev) => {
-      {
-        return { ...prev, data: allBidRows };
-      }
+      return { ...prev, data: allBidRows };
     });
     uploadData({
       clientName: bid.clientName,

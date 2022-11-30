@@ -1,6 +1,6 @@
 import React from "react";
 import "./Add_Item_Btn.css";
-export default function Add_Item_Btn({ setaddItemToggle }) {
+export default function AddItemBtn({ setaddItemToggle }) {
   const showFormHandler = () => {
     setaddItemToggle({ btn_Visible: false, formVisible: true });
   };
@@ -10,6 +10,7 @@ export default function Add_Item_Btn({ setaddItemToggle }) {
         src="/addItem.png"
         className="addItem_btn"
         onClick={showFormHandler}
+        alt=""
       ></img>
     </div>
   );

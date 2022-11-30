@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useContext } from "react";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
-import Product_Component from "./Product_Component";
+import ProductComponent from "./ProductComponent";
 
 export default function CalcPage({ data, dispatch }) {
   // eslint-disable-next-line
@@ -34,7 +34,7 @@ export default function CalcPage({ data, dispatch }) {
     <div>
       {data.calc.map((product, index) => {
         return (
-          <Product_Component
+          <ProductComponent
             productData={product}
             allData={data}
             dispatch={dispatch}
