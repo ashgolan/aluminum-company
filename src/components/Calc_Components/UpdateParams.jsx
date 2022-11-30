@@ -1,7 +1,6 @@
 import React from "react";
 import "./UpdateParams.css";
 export default function UpdateParams({
-  productDetails,
   changeParams,
   paramsData,
   setParamsData,

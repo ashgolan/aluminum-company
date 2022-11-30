@@ -23,8 +23,6 @@ function App() {
     message: null,
   });
 
-  // move to other file in utils
-
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(

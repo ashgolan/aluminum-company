@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { FetchingStatus } from "../../utils/context";
 
 export default function Product_Component({ allData, productData, dispatch }) {
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [showChart, setShowChart] = useState(false);
   const [input, setInput] = useState({
@@ -75,7 +76,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
             }}
             className="edit-container"
           >
-            <label htmlFor="">שינוי פרמטרים</label>
+            <label className="changeParams" htmlFor="">
+              שינוי פרמטרים
+            </label>
             <i className="fa-solid fa-pen-to-square"></i>
           </div>
 
@@ -86,6 +89,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
             type="number"
             placeholder="גובה משקוף"
             onChange={(e) => {
+              setShowChart(false);
               setChangeParams(false);
               setInput((prev) => {
                 return { ...prev, height: e.target.value };
@@ -100,6 +104,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
             placeholder="רוחב משקוף"
             onChange={(e) => {
               setChangeParams(false);
+              setShowChart(false);
               setInput((prev) => {
                 return { ...prev, width: e.target.value };
               });
@@ -125,11 +130,13 @@ export default function Product_Component({ allData, productData, dispatch }) {
           <div className="calc_div">ג.תריס</div>
           <div className="calc_div">ר.זכוכית</div>
           <div className="calc_div">ג.זכוכית </div>
-          <img
-            style={{ width: "4%", visibility: "hidden" }}
-            src="/widthHeight.png"
-            alt=""
-          />
+          {input.width && input.height && size.size1 && (
+            <img
+              style={{ width: "4%", visibility: "hidden" }}
+              src="/widthHeight.png"
+              alt=""
+            />
+          )}
         </div>
         <div className="calc_row">
           <input
@@ -138,8 +145,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
             value={size.size1}
             onChange={(e) => {
               setSize((prev) => {
-                return { ...prev, size1: e.target.value };
+                return { ...prev, size1: +e.target.value };
               });
+              setChartSize(() => +e.target.value);
             }}
           ></input>
 
@@ -212,16 +220,18 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 paramsData.hZchochet
               ).toFixed(1)}
           </div>
-          <img
-            onClick={(e) => {
-              e.preventDefault();
-              setChartSize(() => size.size1);
-              setShowChart(() => true);
-            }}
-            style={{ width: "4%", cursor: "pointer" }}
-            src="/widthHeight.png"
-            alt=""
-          />
+          {input.width && input.height && size.size1 && (
+            <img
+              onClick={(e) => {
+                e.preventDefault();
+                setChartSize(() => size.size1);
+                setShowChart(() => true);
+              }}
+              style={{ width: "4%", cursor: "pointer" }}
+              src="/widthHeight.png"
+              alt=""
+            />
+          )}
         </div>
 
         <div className="calc_row">
@@ -231,8 +241,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
             value={size.size2}
             onChange={(e) => {
               setSize((prev) => {
-                return { ...prev, size2: e.target.value };
+                return { ...prev, size2: +e.target.value };
               });
+              setChartSize(() => +e.target.value);
             }}
           ></input>
           <div className="calc_div">
@@ -304,16 +315,18 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 paramsData.hZchochet
               ).toFixed(1)}
           </div>
-          <img
-            onClick={(e) => {
-              e.preventDefault();
-              setChartSize(() => size.size2);
-              setShowChart(() => true);
-            }}
-            style={{ width: "4%", cursor: "pointer" }}
-            src="/widthHeight.png"
-            alt=""
-          />
+          {input.width && input.height && size.size2 && (
+            <img
+              onClick={(e) => {
+                e.preventDefault();
+                setChartSize(() => size.size2);
+                setShowChart(() => true);
+              }}
+              style={{ width: "4%", cursor: "pointer" }}
+              src="/widthHeight.png"
+              alt=""
+            />
+          )}
         </div>
         <div className="calc_row">
           <input
@@ -322,8 +335,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
             value={size.size3}
             onChange={(e) => {
               setSize((prev) => {
-                return { ...prev, size3: e.target.value };
+                return { ...prev, size3: +e.target.value };
               });
+              setChartSize(() => +e.target.value);
             }}
           ></input>
           <div className="calc_div">
@@ -395,48 +409,25 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 paramsData.hZchochet
               ).toFixed(1)}
           </div>
-          <img
-            onClick={(e) => {
-              e.preventDefault();
-              setChartSize(() => size.size3);
-              setShowChart(() => true);
-            }}
-            style={{ width: "4%", cursor: "pointer" }}
-            src="/widthHeight.png"
-            alt=""
-          />
+          {input.width && input.height && (size.size3 || size.size3 === 0) && (
+            <img
+              onClick={(e) => {
+                e.preventDefault();
+                setChartSize(() => size.size3);
+                setShowChart(() => true);
+              }}
+              style={{ width: "4%", cursor: "pointer" }}
+              src="/widthHeight.png"
+              alt=""
+            />
+          )}
         </div>
       </form>
       {showChart && (
         <form className="chart-container">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "15%",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "25vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "25vh",
-                  lineHeight: "25vh",
-                  textAlign: "center",
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  border: "1px black dotted",
-                }}
-              >
-                כנף
-              </div>
+          <div className="windowContainer">
+            <div className="upperDiv">
+              <div className="windowDraw">כנף</div>
               <div
                 style={{
                   width: "20%",
@@ -448,7 +439,7 @@ export default function Product_Component({ allData, productData, dispatch }) {
               >
                 {input.width &&
                   input.height &&
-                  chartSize &&
+                  chartSize !== "" &&
                   +input.height - chartSize - paramsData.hCanaf}
               </div>
             </div>
@@ -479,34 +470,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "15%",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "25vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "25vh",
-                  lineHeight: "25vh",
-                  textAlign: "center",
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  border: "1px black dotted",
-                }}
-              >
-                רשת
-              </div>
+          <div className="windowContainer">
+            <div className="upperDiv">
+              <div className="windowDraw">רשת</div>
               <div
                 style={{
                   width: "20%",
@@ -555,34 +521,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "15%",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "25vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "25vh",
-                  lineHeight: "25vh",
-                  textAlign: "center",
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  border: "1px black dotted",
-                }}
-              >
-                תריס
-              </div>
+          <div className="windowContainer">
+            <div className="upperDiv">
+              <div className="windowDraw">תריס</div>
               <div
                 style={{
                   width: "20%",
@@ -597,8 +538,8 @@ export default function Product_Component({ allData, productData, dispatch }) {
                 chartSize &&
                 chartSize !== "" &&
                 chartSize !== 21
-                  ? (input.height - paramsData.hTreess).toFixed(1)
-                  : (input.height - paramsData.hTreess - 2).toFixed(1)}
+                  ? (input.height - paramsData.hTreess - 2).toFixed(1)
+                  : (input.height - paramsData.hTreess).toFixed(1)}
               </div>
             </div>
             <div
@@ -624,34 +565,9 @@ export default function Product_Component({ allData, productData, dispatch }) {
               <div style={{ width: "20%", height: "3vh" }}></div>
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              width: "15%",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: "25vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "25vh",
-                  lineHeight: "25vh",
-                  textAlign: "center",
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  border: "1px black dotted",
-                }}
-              >
-                זכוכית
-              </div>
+          <div className="windowContainer">
+            <div className="upperDiv">
+              <div className="windowDraw">זכוכית</div>
               <div
                 style={{
                   width: "20%",

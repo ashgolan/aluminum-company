@@ -1,5 +1,5 @@
 .row {
-  width: 80%;
+  max-width: 80%;
   display: flex;
   justify-content: space-around;
   margin: 0.5rem 0;
@@ -19,4 +19,15 @@
 }
 .total {
   text-align: center;
+}
+
+@media screen and (min-width: 375px) and (max-width: 500px) {
+  .input_box {
+    width: 1.7rem;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 915px) {
+  .input_box {
+    width: 3rem;
+  }
 }

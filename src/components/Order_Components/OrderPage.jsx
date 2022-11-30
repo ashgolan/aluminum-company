@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
@@ -9,8 +9,8 @@ import "./OrderPage.css";
 export default function OrderPage({ data: allData, dispatch }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isApproved, setIsApproved] = useState(false);
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
-  const PDFExportComponent = useRef(null);
   useEffect(() => {
     localStorage.clear();
   }, []);
@@ -46,7 +46,10 @@ export default function OrderPage({ data: allData, dispatch }) {
           <div>{bidRow.quantity}</div>
           <div>{bidRow.length}</div>
           <img
-            style={{ padding: bidRow.image !== "" && "0.2% 4%" }}
+            style={{
+              padding: bidRow.image !== "" && "0.2% 4%",
+              width: bidRow.image !== "" && "4.5%",
+            }}
             alt=""
             src={`.${bidRow.image}`}
           ></img>
@@ -100,7 +103,7 @@ export default function OrderPage({ data: allData, dispatch }) {
         {foundClient && (
           <div
             style={{
-              width: "20%",
+              width: "10%",
               padding: "1% 5%",
               borderRadius: " 10px",
               border: "1px rgb(148, 141, 37) solid",
@@ -117,18 +120,17 @@ export default function OrderPage({ data: allData, dispatch }) {
         )}
 
         {foundClient && (
-          <label style={{ fontSize: "2rem", color: "brown" }}>
+          <label style={{ fontSize: "1.5rem", color: "brown" }}>
             {foundClient.clientName}
           </label>
         )}
         <select
           className="order-selection"
-          defaultValue={"בחר"}
           onChange={(e) => {
             setSelectedOption(e.target.selectedOptions[0].id);
           }}
           name=""
-          value={isApproved ? "בחר הזמנה" : "בחר הצעה"}
+          defaultValue={isApproved ? "בחר הזמנה" : "בחר הצעה"}
         >
           <option value="בחר הצעה">
             {isApproved ? "בחר הזמנה" : "בחר הצעה"}

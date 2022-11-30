@@ -11,6 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-html {
-  font-size: calc(15px + 0.15vw);
+@media screen and (max-width: 800px) {
+  html {
+    font-size: calc(15px + 0.15vw);
+
+    /* Rotate the content container */
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    /* Set content width to viewport height */
+    width: 100vh;
+    /* Set content height to viewport width */
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
 }

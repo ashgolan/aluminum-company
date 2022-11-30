@@ -5,8 +5,9 @@ import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
 import ForgingRow from "./ForgingRow";
 import "./ForgingPage.css";
-export default function ForgingPage({ data, dispatch }) {
+export default function ForgingPage({ dispatch }) {
   const navigate = useNavigate();
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
 
   const [numOfRows, setNumOfRows] = useState(5);

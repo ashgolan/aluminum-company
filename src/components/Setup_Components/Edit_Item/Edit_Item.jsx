@@ -15,6 +15,7 @@ export default function Edit_Item({
   dispatch,
   state,
 }) {
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
 
   const checkInputsValues = () => {

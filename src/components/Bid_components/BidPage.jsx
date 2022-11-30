@@ -8,7 +8,8 @@ import { useContext } from "react";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
 
-export default function BidPage({ dispatch, allData }) {
+export default function BidPage({ dispatch }) {
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const navigate = useNavigate();
   const [numOfRows, setNumOfRows] = useState(5);

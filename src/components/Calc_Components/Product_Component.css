@@ -62,8 +62,8 @@ input::-webkit-inner-spin-button {
 
 .calc_div,
 .size-box {
-  width: 10%;
-  height: 6vh;
+  width: 7%;
+  height: 3vh;
   padding: 1%;
   flex: 1 1 10%;
   border: 1px whitesmoke solid;
@@ -88,11 +88,60 @@ input::-webkit-inner-spin-button {
   background-color: brown;
   margin: 1% auto;
 }
-.one,
-.two,
-.three,
-.four {
+.windowContainer {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  align-items: center;
+}
+.upperDiv {
   width: 100%;
-  height: 100%;
-  background-color: red;
+  height: 25vh;
+  display: flex;
+}
+.windowDraw {
+  width: 80%;
+  height: 25vh;
+  line-height: 25vh;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 2px rgb(58, 30, 4) solid;
+  box-shadow: -9px 11px 9px 1px rgba(43, 120, 176, 0.64);
+  -webkit-box-shadow: -9px 11px 9px 1px rgba(43, 120, 176, 0.64);
+  -moz-box-shadow: -9px 11px 9px 1px rgba(43, 120, 176, 0.64);
+}
+@media screen and (min-width: 360px) and (max-width: 740px) {
+  .calc_div,
+  .size-box {
+    width: 0.5rem;
+    font-size: 0.5rem;
+  }
+  .width_heightInputs {
+    width: 5%;
+    padding: 1.5%;
+    border: 1px rgb(148, 141, 37) solid;
+    text-align: right;
+  }
+  .width_heightInputs::placeholder {
+    font-size: 0.5rem;
+  }
+  .productName {
+    font-size: 1rem;
+  }
+  .edit-container,
+  .save-container {
+    width: 2%;
+  }
+  .edit-container i,
+  .save-container i {
+    font-size: 0.5rem;
+  }
+  .changeParams {
+    font-size: 0.5rem;
+  }
+  .chart-container {
+    width: 40%;
+    height: 15vh;
+  }
 }

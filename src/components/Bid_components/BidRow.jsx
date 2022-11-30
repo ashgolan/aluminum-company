@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import "./BidRow.css";
-export default function BidRow({ numOfRow, setIsFilledStatus }) {
+export default function BidRow({ numOfRow }) {
   const bidForm = useRef();
   const fileInput = useRef();
   const [itemInRow, setItemInRow] = useState({

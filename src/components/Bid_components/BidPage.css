@@ -42,10 +42,31 @@
   text-align: right;
 }
 .addWRow_btn {
-  width: 7%;
+  width: 4%;
   padding: 1%;
   cursor: pointer;
 }
 .message {
   color: brown;
+}
+
+@media screen and (min-width: 375px) and (max-width: 500px) {
+  .header_container {
+    width: 50%;
+  }
+  .name,
+  .date,
+  .save {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 915px) {
+  .header_container {
+    width: 70%;
+  }
+  .name,
+  .date,
+  .save {
+    width: 70%;
+  }
 }

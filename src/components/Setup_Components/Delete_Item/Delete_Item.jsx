@@ -16,6 +16,7 @@ export default function Delete_Item({
   dispatch,
   state,
 }) {
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const deleteData = async () => {
     try {

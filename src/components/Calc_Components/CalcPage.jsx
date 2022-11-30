@@ -6,6 +6,7 @@ import { ACTION_TYPES } from "../../utils/dataActionTypes";
 import Product_Component from "./Product_Component";
 
 export default function CalcPage({ data, dispatch }) {
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
 
   useEffect(() => {
