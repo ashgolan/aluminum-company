@@ -20,7 +20,7 @@ const EDIT = (state, configObj) => {
 const DELETE = (state, updatedData) => {
   return { ...state, inventory: updatedData };
 };
-
+// eslint-disable-next-line
 export const fetchReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_ALL_DATA":
