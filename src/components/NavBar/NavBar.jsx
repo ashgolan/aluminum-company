@@ -26,7 +26,7 @@ function NavBar() {
     <nav>
       {(toggleMenu || screenWidth > 500) && (
         <ul className="list">
-          <Link style={{ width: "20%" }} to={"/"} className="items">
+          <Link style={{ width: "20%" }} to={"/"}>
             <img className="logo" src="/logo6.png" alt="" />
           </Link>
           <Link className="items" to={"/calc"}>
