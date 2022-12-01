@@ -103,7 +103,7 @@ export default function OrderPage({ data: allData, dispatch }) {
         {foundClient && (
           <div
             style={{
-              width: "10%",
+              width: "20%",
               padding: "1% 5%",
               borderRadius: " 10px",
               border: "1px rgb(148, 141, 37) solid",

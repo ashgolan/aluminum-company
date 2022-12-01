@@ -48,6 +48,7 @@
   cursor: pointer;
 }
 .approving {
+  width: 20%;
   border: none;
   background-color: brown;
   color: white;
