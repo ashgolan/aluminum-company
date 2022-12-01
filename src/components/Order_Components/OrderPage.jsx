@@ -48,7 +48,7 @@ export default function OrderPage({ data: allData, dispatch }) {
           <img
             style={{
               padding: bidRow.image !== "" && "0.2% 4%",
-              width: bidRow.image !== "" && "4.5%",
+              width: bidRow.image !== "" && "12.5%",
             }}
             alt=""
             src={`.${bidRow.image}`}
