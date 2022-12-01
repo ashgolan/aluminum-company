@@ -1,40 +1,8 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.nav_container {
-  display: flex;
-  justify-content: space-around;
-  background-color: rgb(0, 72, 114);
-  width: 100%;
-  height: 15vh;
-}
-.nav {
-  list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  color: whitesmoke;
-  width: 90%;
-  align-items: center;
-  margin: auto;
-}
-
-.nav a {
-  cursor: pointer;
-  flex: 1 1 10%;
-  font-size: 1.1rem;
-  text-decoration: none;
-  color: whitesmoke;
-  text-align: center;
-}
-nav a :hover {
-  transition: transform 1s scaleX(1) ease-in-out;
-}
-
-} */
-
 img {
   width: 75%;
 }

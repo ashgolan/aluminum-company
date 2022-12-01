@@ -63,7 +63,7 @@ input::-webkit-inner-spin-button {
 .calc_div,
 .size-box {
   width: 7%;
-  height: 3vh;
+  height: 6vh;
   padding: 1%;
   flex: 1 1 10%;
   border: 1px whitesmoke solid;
