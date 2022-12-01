@@ -106,10 +106,28 @@ input::-webkit-inner-spin-button {
   text-align: center;
   border-radius: 10px;
   font-weight: bold;
-  border: 2px rgb(58, 30, 4) solid;
+  border: 2px rgb(99, 2, 39) solid;
   box-shadow: -9px 11px 9px 1px rgba(43, 120, 176, 0.64);
   -webkit-box-shadow: -9px 11px 9px 1px rgba(43, 120, 176, 0.64);
   -moz-box-shadow: -9px 11px 9px 1px rgba(43, 120, 176, 0.64);
+}
+.heightParamBox {
+  width: 20%;
+  height: 25vh;
+  writing-mode: vertical-rl;
+  text-align: center;
+  font-weight: bold;
+}
+.bottomDiv {
+  width: 100%;
+  height: 2vh;
+  display: flex;
+}
+.widthParamBox {
+  width: 80%;
+  height: 3vh;
+  text-align: center;
+  font-weight: bold;
 }
 @media screen and (min-width: 360px) and (max-width: 740px) {
   .calc_div,

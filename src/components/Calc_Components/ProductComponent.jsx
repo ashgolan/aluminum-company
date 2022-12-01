@@ -18,7 +18,7 @@ export default function ProductComponent({ allData, productData, dispatch }) {
   const [size, setSize] = useState({
     size1: 21,
     size2: 28,
-    size3: 0,
+    size3: "0",
   });
   const [chartSize, setChartSize] = useState(null);
   const [changeParams, setChangeParams] = useState(false);
@@ -428,36 +428,15 @@ export default function ProductComponent({ allData, productData, dispatch }) {
           <div className="windowContainer">
             <div className="upperDiv">
               <div className="windowDraw">כנף</div>
-              <div
-                style={{
-                  width: "20%",
-                  height: "25vh",
-                  writingMode: "vertical-rl",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+              <div className="heightParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
                   +input.height - chartSize - paramsData.hCanaf}
               </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                height: "2vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "3vh",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+            <div className="bottomDiv">
+              <div className="widthParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
@@ -473,15 +452,7 @@ export default function ProductComponent({ allData, productData, dispatch }) {
           <div className="windowContainer">
             <div className="upperDiv">
               <div className="windowDraw">רשת</div>
-              <div
-                style={{
-                  width: "20%",
-                  height: "25vh",
-                  writingMode: "vertical-rl",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+              <div className="heightParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
@@ -493,21 +464,8 @@ export default function ProductComponent({ allData, productData, dispatch }) {
                   ).toFixed(1)}
               </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                height: "2vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "3vh",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+            <div className="bottomDiv">
+              <div className="widthParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
@@ -524,15 +482,7 @@ export default function ProductComponent({ allData, productData, dispatch }) {
           <div className="windowContainer">
             <div className="upperDiv">
               <div className="windowDraw">תריס</div>
-              <div
-                style={{
-                  width: "20%",
-                  height: "25vh",
-                  writingMode: "vertical-rl",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+              <div className="heightParamBox">
                 {input.width &&
                 input.height &&
                 chartSize &&
@@ -542,21 +492,8 @@ export default function ProductComponent({ allData, productData, dispatch }) {
                   : (input.height - paramsData.hTreess).toFixed(1)}
               </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                height: "2vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "3vh",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+            <div className="bottomDiv">
+              <div className="widthParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
@@ -568,15 +505,7 @@ export default function ProductComponent({ allData, productData, dispatch }) {
           <div className="windowContainer">
             <div className="upperDiv">
               <div className="windowDraw">זכוכית</div>
-              <div
-                style={{
-                  width: "20%",
-                  height: "25vh",
-                  writingMode: "vertical-rl",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+              <div className="heightParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
@@ -588,21 +517,8 @@ export default function ProductComponent({ allData, productData, dispatch }) {
                   ).toFixed(1)}
               </div>
             </div>
-            <div
-              style={{
-                width: "100%",
-                height: "2vh",
-                display: "flex",
-              }}
-            >
-              <div
-                style={{
-                  width: "80%",
-                  height: "3vh",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
+            <div className="bottomDiv">
+              <div className="widthParamBox">
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
