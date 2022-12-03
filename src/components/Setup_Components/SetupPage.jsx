@@ -7,7 +7,7 @@ import { FetchingStatus } from "../../utils/context";
 import "./SetupPage.css";
 
 export default function SetupPage({ dispatch, state }) {
-  console.log(state);
+  // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [itemInChange, setItemInChange] = useState(false);
   const [addItemToggle, setaddItemToggle] = useState({
