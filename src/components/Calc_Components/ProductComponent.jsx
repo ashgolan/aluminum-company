@@ -248,7 +248,6 @@ export default function ProductComponent({ allData, productData, dispatch }) {
             </div>
           );
         })}
-        {[...new Array(numOfCharts)].map((chart) => {})}
       </form>
       {showChart && (
         <form className="chart-container">

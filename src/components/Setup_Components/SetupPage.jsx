@@ -1,7 +1,5 @@
-import axios from "axios";
 import React from "react";
-import { useState, useEffect, useContext } from "react";
-import { ACTION_TYPES } from "../../utils/dataActionTypes";
+import { useState, useContext } from "react";
 import AddItem from "./Add_Item/AddItem";
 import AddItemBtn from "./Add_Item/AddItemBtn";
 import ItemsTable from "./Items_Table/ItemsTable";

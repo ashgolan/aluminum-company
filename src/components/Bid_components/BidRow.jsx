@@ -3,7 +3,6 @@ import { useRef } from "react";
 import "./BidRow.css";
 export default function BidRow({ numOfRow, allData }) {
   const bidForm = useRef();
-  const fileInput = useRef();
   const selectedItem = useRef();
   const [itemInRow, setItemInRow] = useState({
     number: "",
@@ -76,17 +75,6 @@ export default function BidRow({ numOfRow, allData }) {
         className="input_box"
         placeholder="משקל"
         defaultValue={itemInRow.weight}
-        // onChange={(e) =>
-        //   setItemInRow((prev) => {
-        //     return {
-        //       ...prev,
-        //       totalWeight: prev.quantity
-        //         ? (prev.quantity * e.target.value).toFixed(2)
-        //         : e.target.value,
-        //       weight: e.target.value,
-        //     };
-        //   })
-        // }
       ></input>
       <input
         name="quantity"
@@ -110,11 +98,6 @@ export default function BidRow({ numOfRow, allData }) {
         className="input_box"
         placeholder="אורך"
         defaultValue={itemInRow.length}
-        // onChange={(e) =>
-        //   setItemInRow((prev) => {
-        //     return { ...prev, length: e.target.value };
-        //   })
-        // }
       ></input>
 
       <img
@@ -131,11 +114,6 @@ export default function BidRow({ numOfRow, allData }) {
         className="input_box"
         placeholder="סוג"
         defaultValue={itemInRow.category}
-        // onChange={(e) =>
-        //   setItemInRow((prev) => {
-        //     return { ...prev, category: e.target.value };
-        //   })
-        // }
       ></input>
       <select
         name=""
@@ -151,11 +129,6 @@ export default function BidRow({ numOfRow, allData }) {
         className="input_box"
         placeholder="מספר"
         defaultValue={itemInRow.number}
-        // onChange={(e) =>
-        //   setItemInRow((prev) => {
-        //     return { ...prev, number: e.target.value };
-        //   })
-        // }
       ></input>
       <input disabled className="row_number" value={numOfRow + 1} />
     </form>
