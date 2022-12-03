@@ -4,6 +4,8 @@ export default function UpdateParams({
   changeParams,
   paramsData,
   setParamsData,
+  input,
+  size,
 }) {
   return (
     <div
@@ -103,11 +105,13 @@ export default function UpdateParams({
           })
         }
       ></input>
-      <img
-        style={{ width: "4%", visibility: "hidden" }}
-        src="/widthHeight.png"
-        alt=""
-      />
+      {input.width && input.height && size.size1 && (
+        <img
+          style={{ width: "4%", visibility: "hidden" }}
+          src="/widthHeight.png"
+          alt=""
+        />
+      )}
     </div>
   );
 }

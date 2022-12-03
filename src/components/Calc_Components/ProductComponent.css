@@ -71,9 +71,9 @@ input::-webkit-inner-spin-button {
   color: whitesmoke;
   text-align: right;
 }
-.calc_row .wCanaf_Param {
+/* .calc_row .wCanaf_Param {
   width: 5%;
-}
+} */
 .calc_row .size-box {
   color: gold;
   text-align: center;

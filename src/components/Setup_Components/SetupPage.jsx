@@ -9,32 +9,13 @@ import { FetchingStatus } from "../../utils/context";
 import "./SetupPage.css";
 
 export default function SetupPage({ dispatch, state }) {
+  console.log(state);
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [itemInChange, setItemInChange] = useState(false);
   const [addItemToggle, setaddItemToggle] = useState({
     btnVisible: true,
     formVisible: false,
   });
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        setFetchingStatus({ loading: true, error: false });
-        const { data } = await axios.get(
-          "https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory"
-        );
-        dispatch({
-          type: ACTION_TYPES.FETCH_ALL_DATA,
-          payload: { type: "inventory", setupData: data },
-        });
-
-        setFetchingStatus({ loading: false, error: false });
-      } catch {
-        setFetchingStatus({ loading: false, error: true });
-      }
-    };
-    fetch();
-  }, [dispatch, setFetchingStatus]);
-
   return (
     <div>
       {fetchingStatus.error && (
@@ -84,18 +65,20 @@ export default function SetupPage({ dispatch, state }) {
         </form>
       </div>
       {(!fetchingStatus.loading || state.inventory.length) &&
-        state.inventory.map((item) => {
-          return (
-            <ItemsTable
-              key={`item${item.id}`}
-              item={item}
-              state={state}
-              dispatch={dispatch}
-              itemInChange={itemInChange}
-              setItemInChange={setItemInChange}
-            ></ItemsTable>
-          );
-        })}
+        state.inventory
+          .sort((a, b) => (a.category > b.category ? 1 : -1))
+          .map((item) => {
+            return (
+              <ItemsTable
+                key={`item${item.id}`}
+                item={item}
+                state={state}
+                dispatch={dispatch}
+                itemInChange={itemInChange}
+                setItemInChange={setItemInChange}
+              ></ItemsTable>
+            );
+          })}
       {!addItemToggle.formVisible && !fetchingStatus.error && (
         <AddItemBtn setaddItemToggle={setaddItemToggle}></AddItemBtn>
       )}

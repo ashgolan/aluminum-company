@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
 
-export default function BidPage({ dispatch }) {
+export default function BidPage({ dispatch, allData }) {
   // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const navigate = useNavigate();
@@ -109,7 +109,13 @@ export default function BidPage({ dispatch }) {
         />
       </form>
       {[...new Array(numOfRows)].map((row, index) => {
-        return <BidRow key={`row${index}`} numOfRow={index}></BidRow>;
+        return (
+          <BidRow
+            key={`row${index}`}
+            numOfRow={index}
+            allData={allData}
+          ></BidRow>
+        );
       })}
       <img
         src="/addItem.png"

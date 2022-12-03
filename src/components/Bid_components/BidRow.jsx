@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useRef } from "react";
 import "./BidRow.css";
-export default function BidRow({ numOfRow }) {
+export default function BidRow({ numOfRow, allData }) {
   const bidForm = useRef();
   const fileInput = useRef();
+  const selectedItem = useRef();
   const [itemInRow, setItemInRow] = useState({
     number: "",
     desc: "",
@@ -14,6 +15,26 @@ export default function BidRow({ numOfRow }) {
     totalWeight: "",
     image: "",
   });
+  const allItems = allData.inventory.map((item, index) => {
+    return <option key={`product${index}`}>{item.desc}</option>;
+  });
+  const setBySelectedValue = (e) => {
+    console.log(e);
+    const foundItem = allData.inventory.find((item) => {
+      return item.desc === e.target.value;
+    });
+    setItemInRow((prev) => {
+      return {
+        ...prev,
+        number: foundItem.number,
+        desc: foundItem.desc,
+        category: foundItem.category,
+        weight: foundItem.weight,
+        length: foundItem.length,
+        image: foundItem.image,
+      };
+    });
+  };
   const checkHandler = (e) => {
     const isFilled = validation();
     if (isFilled) {
@@ -48,24 +69,24 @@ export default function BidRow({ numOfRow }) {
         disabled
         placeholder={`סה"כ`}
         className="input_box total"
-        value={itemInRow.totalWeight}
+        defaultValue={itemInRow.totalWeight}
       ></input>
       <input
         name="weight"
         className="input_box"
         placeholder="משקל"
-        value={itemInRow.weight}
-        onChange={(e) =>
-          setItemInRow((prev) => {
-            return {
-              ...prev,
-              totalWeight: prev.quantity
-                ? prev.quantity * e.target.value
-                : e.target.value,
-              weight: e.target.value,
-            };
-          })
-        }
+        defaultValue={itemInRow.weight}
+        // onChange={(e) =>
+        //   setItemInRow((prev) => {
+        //     return {
+        //       ...prev,
+        //       totalWeight: prev.quantity
+        //         ? (prev.quantity * e.target.value).toFixed(2)
+        //         : e.target.value,
+        //       weight: e.target.value,
+        //     };
+        //   })
+        // }
       ></input>
       <input
         name="quantity"
@@ -77,7 +98,7 @@ export default function BidRow({ numOfRow }) {
             return {
               ...prev,
               totalWeight: prev.weight
-                ? prev.weight * e.target.value
+                ? (prev.weight * e.target.value).toFixed(2)
                 : e.target.value,
               quantity: e.target.value,
             };
@@ -88,67 +109,53 @@ export default function BidRow({ numOfRow }) {
         name="length"
         className="input_box"
         placeholder="אורך"
-        value={itemInRow.length}
-        onChange={(e) =>
-          setItemInRow((prev) => {
-            return { ...prev, length: e.target.value };
-          })
-        }
+        defaultValue={itemInRow.length}
+        // onChange={(e) =>
+        //   setItemInRow((prev) => {
+        //     return { ...prev, length: e.target.value };
+        //   })
+        // }
       ></input>
 
-      <input
-        type="file"
-        id="image"
-        style={{ display: "none" }}
-        ref={fileInput}
-        accept="image/png, image/jpeg"
-        onInput={(e) => {
-          setItemInRow((prev) => {
-            return { ...prev, image: "/images/" + e.target.files[0].name };
-          });
-        }}
-      />
       <img
-        style={{ width: "4%", cursor: "pointer", margin: "0 1%" }}
-        src="../uploadImage2.png"
-        alt=""
-        onClick={(e) => {
-          e.preventDefault();
-          fileInput.current.click();
+        className="imgOfItem"
+        style={{
+          padding: itemInRow.image !== "" && "0.5% 2.5%",
         }}
-      />
+        alt=""
+        src={`.${itemInRow.image}`}
+      ></img>
+
       <input
         name="category"
         className="input_box"
         placeholder="סוג"
-        value={itemInRow.category}
-        onChange={(e) =>
-          setItemInRow((prev) => {
-            return { ...prev, category: e.target.value };
-          })
-        }
+        defaultValue={itemInRow.category}
+        // onChange={(e) =>
+        //   setItemInRow((prev) => {
+        //     return { ...prev, category: e.target.value };
+        //   })
+        // }
       ></input>
-      <input
-        name="desc"
-        className="input_box"
-        placeholder="מוצר"
-        value={itemInRow.desc}
-        onChange={(e) =>
-          setItemInRow((prev) => {
-            return { ...prev, desc: e.target.value };
-          })
-        }
-      ></input>
+      <select
+        name=""
+        id=""
+        ref={selectedItem}
+        defaultValue={itemInRow.desc}
+        onChange={(e) => setBySelectedValue(e)}
+      >
+        {allItems}
+      </select>
       <input
         name="number"
         className="input_box"
         placeholder="מספר"
-        value={itemInRow.number}
-        onChange={(e) =>
-          setItemInRow((prev) => {
-            return { ...prev, number: e.target.value };
-          })
-        }
+        defaultValue={itemInRow.number}
+        // onChange={(e) =>
+        //   setItemInRow((prev) => {
+        //     return { ...prev, number: e.target.value };
+        //   })
+        // }
       ></input>
       <input disabled className="row_number" value={numOfRow + 1} />
     </form>

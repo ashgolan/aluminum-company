@@ -25,12 +25,20 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(
+      let { data } = await axios.get(
         "https://6384bd7c3fa7acb14fff0d13.mockapi.io/bids"
       );
       dispatchData({
         type: ACTION_TYPES.FETCH_ALL_DATA,
         payload: { type: "bids", setupData: data },
+      });
+      data = await axios.get(
+        "https://6384bd7c3fa7acb14fff0d13.mockapi.io/inventory"
+      );
+      console.log(data);
+      dispatchData({
+        type: ACTION_TYPES.FETCH_ALL_DATA,
+        payload: { type: "inventory", setupData: data.data },
       });
     };
     fetchData();

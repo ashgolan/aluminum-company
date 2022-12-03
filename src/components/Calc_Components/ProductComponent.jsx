@@ -10,6 +10,10 @@ import { FetchingStatus } from "../../utils/context";
 export default function ProductComponent({ allData, productData, dispatch }) {
   // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
+  // eslint-disable-next-line
+  const [numOfRows, setNumOfRows] = useState(3);
+  // eslint-disable-next-line
+  const [numOfCharts, setNumOfCharts] = useState(4);
   const [showChart, setShowChart] = useState(false);
   const [input, setInput] = useState({
     width: "",
@@ -118,6 +122,8 @@ export default function ProductComponent({ allData, productData, dispatch }) {
           changeParams={changeParams}
           paramsData={paramsData}
           setParamsData={setParamsData}
+          input={input}
+          size={size}
         ></UpdateParams>
 
         <div className="calc_row calcHeader">
@@ -138,290 +144,111 @@ export default function ProductComponent({ allData, productData, dispatch }) {
             />
           )}
         </div>
-        <div className="calc_row">
-          <input
-            className="size-box"
-            type="number"
-            value={size.size1}
-            onChange={(e) => {
-              setSize((prev) => {
-                return { ...prev, size1: +e.target.value };
-              });
-              setChartSize(() => +e.target.value);
-            }}
-          ></input>
+        {[...new Array(numOfRows)].map((row, index) => {
+          return (
+            <div key={`calcRow${index}`} className="calc_row">
+              <input
+                className="size-box"
+                type="number"
+                value={size[`size${index + 1}`]}
+                onChange={(e) => {
+                  setSize((prev) => {
+                    if (index === 0) return { ...prev, size1: +e.target.value };
+                    if (index === 1) return { ...prev, size2: +e.target.value };
+                    if (index === 2) return { ...prev, size3: +e.target.value };
+                  });
+                  setChartSize(() => +e.target.value);
+                }}
+              ></input>
 
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam
-              ).toFixed(1)}{" "}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              +input.height - size.size1 - paramsData.hCanaf}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam +
-                paramsData.wRechet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (
-                +input.height -
-                size.size1 -
-                paramsData.hCanaf +
-                paramsData.hRechet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (input.width - paramsData.wTreess).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (input.height - paramsData.hTreess).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam -
-                paramsData.wZchochet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size1 &&
-              (
-                +input.height -
-                size.size1 -
-                paramsData.hCanaf -
-                paramsData.hZchochet
-              ).toFixed(1)}
-          </div>
-          {input.width && input.height && size.size1 && (
-            <img
-              onClick={(e) => {
-                e.preventDefault();
-                setChartSize(() => size.size1);
-                setShowChart(() => true);
-              }}
-              style={{ width: "4%", cursor: "pointer" }}
-              src="/widthHeight.png"
-              alt=""
-            />
-          )}
-        </div>
-
-        <div className="calc_row">
-          <input
-            className="size-box"
-            type="number"
-            value={size.size2}
-            onChange={(e) => {
-              setSize((prev) => {
-                return { ...prev, size2: +e.target.value };
-              });
-              setChartSize(() => +e.target.value);
-            }}
-          ></input>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (+input.height - size.size2 - paramsData.hCanaf).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam +
-                paramsData.wRechet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (
-                +input.height -
-                size.size2 -
-                paramsData.hCanaf +
-                paramsData.hRechet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (input.width - paramsData.wTreess).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (input.height - paramsData.hTreess - 2).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam -
-                paramsData.wZchochet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size2 &&
-              (
-                +input.height -
-                size.size2 -
-                paramsData.hCanaf -
-                paramsData.hZchochet
-              ).toFixed(1)}
-          </div>
-          {input.width && input.height && size.size2 && (
-            <img
-              onClick={(e) => {
-                e.preventDefault();
-                setChartSize(() => size.size2);
-                setShowChart(() => true);
-              }}
-              style={{ width: "4%", cursor: "pointer" }}
-              src="/widthHeight.png"
-              alt=""
-            />
-          )}
-        </div>
-        <div className="calc_row">
-          <input
-            className="size-box"
-            type="number"
-            value={size.size3}
-            onChange={(e) => {
-              setSize((prev) => {
-                return { ...prev, size3: +e.target.value };
-              });
-              setChartSize(() => +e.target.value);
-            }}
-          ></input>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (+input.height - size.size3 - paramsData.hCanaf).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam +
-                paramsData.wRechet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (
-                +input.height -
-                size.size3 -
-                paramsData.hCanaf +
-                paramsData.hRechet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (input.width - paramsData.wTreess).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (input.height - paramsData.hTreess - 2).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (
-                (input.width - paramsData.wCanaf) / 2 +
-                paramsData.wCanafParam -
-                paramsData.wZchochet
-              ).toFixed(1)}
-          </div>
-          <div className="calc_div">
-            {input.width &&
-              input.height &&
-              size.size3 !== "" &&
-              (
-                +input.height -
-                size.size3 -
-                paramsData.hCanaf -
-                paramsData.hZchochet
-              ).toFixed(1)}
-          </div>
-          {input.width && input.height && (size.size3 || size.size3 === 0) && (
-            <img
-              onClick={(e) => {
-                e.preventDefault();
-                setChartSize(() => size.size3);
-                setShowChart(() => true);
-              }}
-              style={{ width: "4%", cursor: "pointer" }}
-              src="/widthHeight.png"
-              alt=""
-            />
-          )}
-        </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  (
+                    (input.width - paramsData.wCanaf) / 2 +
+                    paramsData.wCanafParam
+                  ).toFixed(1)}
+              </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  +input.height - size[`size${index + 1}`] - paramsData.hCanaf}
+              </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  (
+                    (input.width - paramsData.wCanaf) / 2 +
+                    paramsData.wCanafParam +
+                    paramsData.wRechet
+                  ).toFixed(1)}
+              </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  (
+                    +input.height -
+                    size[`size${index + 1}`] -
+                    paramsData.hCanaf +
+                    paramsData.hRechet
+                  ).toFixed(1)}
+              </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  (input.width - paramsData.wTreess).toFixed(1)}
+              </div>
+              <div className="calc_div">
+                {
+                  input.width && input.height && size[`size${index + 1}`] === 21
+                    ? (input.height - paramsData.hTreess).toFixed(1)
+                    : (input.height - paramsData.hTreess - 2).toFixed(1)
+                  // (input.height - paramsData.hTreess)
+                  // .toFixed(1)
+                }
+              </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  (
+                    (input.width - paramsData.wCanaf) / 2 +
+                    paramsData.wCanafParam -
+                    paramsData.wZchochet
+                  ).toFixed(1)}
+              </div>
+              <div className="calc_div">
+                {input.width &&
+                  input.height &&
+                  size[`size${index + 1}`] &&
+                  (
+                    +input.height -
+                    size[`size${index + 1}`] -
+                    paramsData.hCanaf -
+                    paramsData.hZchochet
+                  ).toFixed(1)}
+              </div>
+              {input.width && input.height && size[`size${index + 1}`] && (
+                <img
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setChartSize(() => size[`size${index + 1}`]);
+                    setShowChart(() => true);
+                  }}
+                  style={{ width: "4%", cursor: "pointer" }}
+                  src="/widthHeight.png"
+                  alt=""
+                />
+              )}
+            </div>
+          );
+        })}
+        {[...new Array(numOfCharts)].map((chart) => {})}
       </form>
       {showChart && (
         <form className="chart-container">

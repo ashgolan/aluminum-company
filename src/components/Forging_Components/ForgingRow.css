@@ -4,3 +4,10 @@
   justify-content: space-around;
   margin: 0.5rem 0;
 }
+.forging_produceName {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px rgb(202, 196, 196) dotted;
+  text-align: right;
+}

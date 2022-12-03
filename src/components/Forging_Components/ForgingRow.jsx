@@ -54,9 +54,8 @@ export default function ForgingRow({ numOfRow }) {
         }}
       ></input>
       <input
-        style={{ width: "30%" }}
         name="product"
-        className="input_box total"
+        className="forging_produceName"
         value={forgingItemInRow.product}
         placeholder="מוצר"
         onChange={(e) => {
