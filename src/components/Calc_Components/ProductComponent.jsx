@@ -200,14 +200,18 @@ export default function ProductComponent({ allData, productData, dispatch }) {
               <div className="calc_div">
                 {input.width &&
                   input.height &&
+                  size[`size${index + 1}`] !== "0" &&
                   size[`size${index + 1}`] &&
                   (input.width - paramsData.wTreess).toFixed(1)}
               </div>
               <div className="calc_div">
                 {
-                  input.width && input.height && size[`size${index + 1}`] === 21
-                    ? (input.height - paramsData.hTreess).toFixed(1)
-                    : (input.height - paramsData.hTreess - 2).toFixed(1)
+                  input.width &&
+                    input.height &&
+                    size[`size${index + 1}`] !== "0" &&
+                    (size[`size${index + 1}`] === 21
+                      ? (input.height - paramsData.hTreess).toFixed(1)
+                      : (input.height - paramsData.hTreess - 2).toFixed(1))
                   // (input.height - paramsData.hTreess)
                   // .toFixed(1)
                 }
@@ -310,12 +314,13 @@ export default function ProductComponent({ allData, productData, dispatch }) {
               <div className="windowDraw">תריס</div>
               <div className="heightParamBox">
                 {input.width &&
-                input.height &&
-                chartSize &&
-                chartSize !== "" &&
-                chartSize !== 21
-                  ? (input.height - paramsData.hTreess - 2).toFixed(1)
-                  : (input.height - paramsData.hTreess).toFixed(1)}
+                  input.height &&
+                  chartSize &&
+                  chartSize !== "" &&
+                  chartSize !== "0" &&
+                  (chartSize !== 21
+                    ? (input.height - paramsData.hTreess - 2).toFixed(1)
+                    : (input.height - paramsData.hTreess).toFixed(1))}
               </div>
             </div>
             <div className="bottomDiv">
@@ -323,6 +328,7 @@ export default function ProductComponent({ allData, productData, dispatch }) {
                 {input.width &&
                   input.height &&
                   chartSize !== "" &&
+                  chartSize !== "0" &&
                   (input.width - paramsData.wTreess).toFixed(1)}
               </div>
               <div style={{ width: "20%", height: "3vh" }}></div>
