@@ -18,7 +18,6 @@ export default function BidRow({ numOfRow, allData }) {
     return <option key={`product${index}`}>{item.desc}</option>;
   });
   const setBySelectedValue = (e) => {
-    console.log(e);
     const foundItem = allData.inventory.find((item) => {
       return item.desc === e.target.value;
     });

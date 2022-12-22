@@ -3,7 +3,8 @@ import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { FetchingStatus } from "../../utils/context";
 import { ACTION_TYPES } from "../../utils/dataActionTypes";
-
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 import "./OrderPage.css";
 
 export default function OrderPage({ data: allData, dispatch }) {
@@ -60,9 +61,29 @@ export default function OrderPage({ data: allData, dispatch }) {
       );
     });
 
+  const exportToPdf = () => {
+    const input = document.getElementById("pdfOrder");
+    html2canvas(input, {
+      scale: 2,
+      logging: true,
+      letterRendering: 1,
+      useCORS: true,
+    }).then((canvas) => {
+      const imgWidth = 208;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const widthRatio = imgWidth / canvas.width;
+      const heightRatio = imgHeight / canvas.height;
+      const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
+      const canvasWidth = canvas.width * ratio;
+      const marginX = (imgWidth - canvasWidth) / 2;
+      const imgData = canvas.toDataURL("img/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      pdf.addImage(imgData, "PNG", marginX, 0, imgWidth, imgHeight);
+      pdf.save("order.pdf");
+    });
+  };
   const approveBid = async (e) => {
     try {
-      foundClient.isApproved = true;
       setFetchingStatus({ loading: true, error: false });
       await axios.put(
         `https://6384bd7c3fa7acb14fff0d13.mockapi.io/bids/${foundClient.id}`,
@@ -72,83 +93,83 @@ export default function OrderPage({ data: allData, dispatch }) {
         type: ACTION_TYPES.EDIT,
         payload: { type: "bids", updateData: allData.bids },
       });
+      exportToPdf();
+
       setFetchingStatus({ loading: false, error: false });
       setSelectedOption((prev) => null);
+      foundClient.isApproved = true;
     } catch {
       setFetchingStatus({ loading: false, error: true });
     }
   };
   return (
     <div className="order-container">
-      <header className="orderheader">
-        <img
-          onClick={() => {
-            setSelectedOption(null);
-            setIsApproved((prev) => !prev);
+      {foundClient && !isApproved && (
+        <button
+          onClick={(e) => {
+            approveBid(e);
           }}
-          src="/history.png"
-          alt=""
-        />
-
-        {foundClient && !isApproved && (
-          <button
-            onClick={(e) => {
-              approveBid(e);
-            }}
-            className="approving"
-          >
-            שלח להזמנה
-          </button>
-        )}
-        {foundClient && (
-          <div
-            style={{
-              width: "20%",
-              padding: "1% 5%",
-              borderRadius: " 10px",
-              border: "1px rgb(148, 141, 37) solid",
-              fontSize: " 1.1rem",
-              margin: "1%",
-              color: "rgb(6, 47, 122)",
-              textAlign: "center",
-              fontWeight: "bold",
-            }}
-          >
-            <label htmlFor=""> צבע</label>
-            {`  : ${foundClient.color}`}
-          </div>
-        )}
-
-        {foundClient && (
-          <label style={{ fontSize: "1.5rem", color: "brown" }}>
-            {foundClient.clientName}
-          </label>
-        )}
-        <select
-          className="order-selection"
-          onChange={(e) => {
-            setSelectedOption(e.target.selectedOptions[0].id);
-          }}
-          name=""
-          defaultValue={isApproved ? "בחר הזמנה" : "בחר הצעה"}
+          className="approving"
         >
-          <option value="בחר הצעה">
-            {isApproved ? "בחר הזמנה" : "בחר הצעה"}
-          </option>
-          {bidsNames}
-        </select>
-      </header>
-      <form className="orderRow titles">
-        <div>סה"כ</div>
-        <div>משקל</div>
-        <div>כמות</div>
-        <div>אורך</div>
-        <div>תמונה</div>
-        <div>סוג</div>
-        <div>תאור</div>
-        <div>מספר</div>
-      </form>
-      {customBid}
+          שלח להזמנה
+        </button>
+      )}
+      <div id="pdfOrder">
+        <header className="orderheader">
+          <img
+            onClick={() => {
+              setSelectedOption(null);
+              setIsApproved((prev) => !prev);
+            }}
+            src="/history.png"
+            alt=""
+          />
+
+          {foundClient && (
+            <div
+              style={{
+                width: "20%",
+                padding: "1% 5%",
+                borderRadius: " 10px",
+                border: "1px rgb(148, 141, 37) solid",
+                fontSize: " 1.1rem",
+                margin: "1%",
+                color: "rgb(6, 47, 122)",
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+            >
+              <label htmlFor=""> צבע</label>
+              {`  : ${foundClient.color}`}
+            </div>
+          )}
+
+          <select
+            className="order-selection"
+            onChange={(e) => {
+              setSelectedOption(e.target.selectedOptions[0].id);
+            }}
+            name=""
+            defaultValue={isApproved ? "בחר הזמנה" : "בחר הצעה"}
+          >
+            <option value="בחר הצעה">
+              {isApproved ? "בחר הזמנה" : "בחר הצעה"}
+            </option>
+            {bidsNames}
+          </select>
+        </header>
+        <form className="orderRow titles">
+          <div>סה"כ</div>
+          <div>משקל</div>
+          <div>כמות</div>
+          <div>אורך</div>
+          <div>תמונה</div>
+          <div>סוג</div>
+          <div>תאור</div>
+          <div>מספר</div>
+        </form>
+        {customBid}
+      </div>
     </div>
   );
 }
