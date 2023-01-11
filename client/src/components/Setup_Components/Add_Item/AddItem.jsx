@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useRef } from "react";
 import { useContext } from "react";
 import { useState } from "react";
@@ -7,6 +8,7 @@ import { ACTION_TYPES } from "../../../utils/dataActionTypes";
 import "./Add_item.css";
 export default function AddItem({ setaddItemToggle, dispatch }) {
   const fileInput = useRef();
+  const productFormData = useRef();
   // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   const [itemsValues, setItemsValues] = useState({
@@ -20,9 +22,22 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
 
   const addItem = async () => {
     try {
+      let formData = new FormData();
+      formData.append("number", itemsValues.number);
+      formData.append("desc", itemsValues.desc);
+      formData.append("category", itemsValues.category);
+      formData.append("weight", itemsValues.weight);
+      formData.append("length", itemsValues.length);
+      formData.append("image", itemsValues.image);
+
       setFetchingStatus({ loading: true, error: false });
-      const { data } = await Api.post("/Inventory", itemsValues);
-      console.log(itemsValues);
+      const { data } = await Api({
+        method: "post",
+        url: "/inventory",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      console.log(data);
       dispatch({
         type: ACTION_TYPES.ADD,
         payload: { type: "inventory", data: data },
@@ -44,7 +59,11 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
     setaddItemToggle({ btnVisible: true, formVisible: false });
   };
   return (
-    <form onSubmit={confirmAddingItem} className="addItem_form">
+    <form
+      ref={productFormData}
+      onSubmit={confirmAddingItem}
+      className="addItem_form"
+    >
       <div
         style={{
           display: "flex",
@@ -54,6 +73,7 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
       >
         <input
           type="file"
+          name="name"
           id="image"
           style={{ display: "none" }}
           ref={fileInput}
@@ -78,6 +98,7 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
       />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <input
+          name="weight"
           id="weight"
           required
           className="add_item"
@@ -90,6 +111,7 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
           value={itemsValues.weight}
         ></input>
         <input
+          name="length"
           id="length"
           required
           className="add_item"
@@ -102,6 +124,7 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
           value={itemsValues.length}
         ></input>
         <input
+          name="category"
           id="category"
           required
           className="add_item"
@@ -114,6 +137,7 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
           value={itemsValues.category}
         ></input>
         <input
+          name="desc"
           id="desc"
           required
           className="add_item"
@@ -126,6 +150,7 @@ export default function AddItem({ setaddItemToggle, dispatch }) {
           value={itemsValues.desc}
         ></input>
         <input
+          name="number"
           id="number"
           required
           className="add_item"

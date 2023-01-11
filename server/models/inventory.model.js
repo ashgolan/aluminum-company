@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+// import { imageSchema } from "./image.model.js";
 
 const inventorySchema = new Schema({
   number: { type: String, required: true },
@@ -6,7 +7,7 @@ const inventorySchema = new Schema({
   category: { type: String, required: true },
   weight: { type: Number, required: true },
   length: { type: Number, required: true },
-  image: { data: Buffer, contentType: String },
+  image: { type: String },
 });
 
 export const Inventory = model("Inventory", inventorySchema);

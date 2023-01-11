@@ -9,6 +9,7 @@ import { calcRouter } from "./routers/calc.router.js";
 const PORT = process.env.port || 5000;
 
 const app = Express();
+app.use("/uploads", Express.static("uploads"));
 app.use(cors());
 app.use(Express.json());
 

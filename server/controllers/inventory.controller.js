@@ -22,19 +22,16 @@ export const getProduct = async (req, res) => {
 };
 
 export const createProduct = async (req, res) => {
-  const storage = multer.diskStorage({
-    dist: "images",
-    filename: (req, file, cb) => {
-      file = req.body.image;
-      cb(null, file);
-    },
-  });
-  const upload = multer({
-    storage: storage,
-  }).single("testImage");
-
   try {
-    const product = await Inventory.create({ ...req.body, image: upload });
+    console.log(req.file);
+    const product = await Inventory.create({
+      number: req.body.number,
+      desc: req.body.desc,
+      category: req.body.category,
+      weight: req.body.weight,
+      length: req.body.length,
+      image: req.file.path.replace(/\\/g, "/"),
+    });
     if (!product) throw Error("bad data was inserted!");
     res.send(product);
   } catch (e) {

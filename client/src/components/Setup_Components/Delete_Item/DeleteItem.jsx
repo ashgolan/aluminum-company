@@ -22,10 +22,11 @@ export default function DeleteItem({
   const deleteData = async () => {
     try {
       const filteredData = state.inventory.filter((item) => {
-        return item.id !== itemId;
+        return item._id !== itemId;
       });
       setFetchingStatus({ loading: true, error: false });
-      const res = await Api.delete(`/Inventory/${itemId}`, itemsValues);
+      console.log(itemId);
+      const res = await Api.delete(`/Inventory/`, { data: { _id: itemId } });
       if (!res.statusText === "OK") throw Error();
 
       setMessage({ status: true, message: "המוצר נמחק בהצלחה" });

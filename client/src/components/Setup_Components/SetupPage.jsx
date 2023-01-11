@@ -68,7 +68,7 @@ export default function SetupPage({ dispatch, state }) {
           .map((item) => {
             return (
               <ItemsTable
-                key={`item${item.id}`}
+                key={`item${item._id}`}
                 item={item}
                 state={state}
                 dispatch={dispatch}

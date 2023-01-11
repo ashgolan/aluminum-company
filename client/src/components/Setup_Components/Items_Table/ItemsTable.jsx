@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { url } from "../../../utils/Api";
 import DeleteItem from "../Delete_Item/DeleteItem";
 import EditItem from "../Edit_Item/EditItem";
 import "./Item_Table.css";
@@ -27,8 +28,8 @@ export default function ItemsTable({
   });
   const [message, setMessage] = useState({ status: false, message: null });
   useEffect(() => {
-    const getData = () => {
-      const thisItem = state.inventory.find((t) => t.id === item.id);
+    const getData = async () => {
+      const thisItem = state.inventory.find((t) => t._id === item._id);
       setItemsValues((prev) => {
         return {
           number: thisItem.number,
@@ -48,7 +49,8 @@ export default function ItemsTable({
         <img
           id="image"
           className="item_image"
-          src={itemsValues.image}
+          src={itemsValues.image && url + "/" + itemsValues.image}
+          // src={window.location.origin + itemsValues.image}
           alt={`img${item.id}`}
           value={itemsValues.image}
         />
@@ -107,10 +109,10 @@ export default function ItemsTable({
             });
           }}
         ></input>
-        {(!itemInChange || changeStatus.itemId === item.id) && (
+        {(!itemInChange || changeStatus.itemId === item._id) && (
           <EditItem
             setMessage={setMessage}
-            itemId={item.id}
+            itemId={item._id}
             itemInChange={itemInChange}
             setItemInChange={setItemInChange}
             changeStatus={changeStatus}
@@ -120,12 +122,12 @@ export default function ItemsTable({
             state={state}
           ></EditItem>
         )}
-        {(!itemInChange || changeStatus.itemId === item.id) && (
+        {(!itemInChange || changeStatus.itemId === item._id) && (
           <DeleteItem
             setMessage={setMessage}
             itemInChange={itemInChange}
             setItemInChange={setItemInChange}
-            itemId={item.id}
+            itemId={item._id}
             changeStatus={changeStatus}
             setChangeStatus={setChangeStatus}
             itemsValues={itemsValues}

@@ -8,4 +8,4 @@ if (process.env.NODE_ENV === "production") {
 const Api = axios.create({
   baseURL: url,
 });
-export { Api };
+export { Api, url };
