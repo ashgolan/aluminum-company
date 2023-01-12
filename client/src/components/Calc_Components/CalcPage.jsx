@@ -25,7 +25,10 @@ export default function CalcPage({ data, dispatch }) {
       }
     };
     fetch();
+
+    const myItem = localStorage.getItem("userID");
     localStorage.clear();
+    localStorage.setItem("userID", myItem);
   }, [dispatch, setFetchingStatus]);
 
   return (

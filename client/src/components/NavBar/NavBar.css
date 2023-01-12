@@ -43,27 +43,3 @@ nav {
   color: rgb(226, 226, 226);
   font-size: 3rem;
 }
-
-@media screen and (max-width: 500px) {
-  img {
-    width: 100%;
-  }
-  .list {
-    flex-direction: column;
-    height: auto;
-  }
-  .items:nth-child(1) {
-    border-top: 1px solid rgba(255, 255, 255, 0.555);
-    margin-top: 50px;
-  }
-  .items {
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.555);
-    text-align: center;
-    margin-right: 0px;
-    padding: 20px 0;
-  }
-  .btn {
-    display: block;
-  }
-}

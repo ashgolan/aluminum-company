@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRef } from "react";
+import { Api, url } from "../../utils/Api";
 import "./BidRow.css";
 export default function BidRow({ numOfRow, allData }) {
   const bidForm = useRef();
@@ -28,6 +29,8 @@ export default function BidRow({ numOfRow, allData }) {
         desc: foundItem && foundItem.desc,
         category: foundItem && foundItem.category,
         weight: foundItem && foundItem.weight,
+        quantity: foundItem && "",
+        totalWeight: foundItem && "",
         length: foundItem && foundItem.length,
         image: foundItem && foundItem.image,
       };
@@ -70,6 +73,7 @@ export default function BidRow({ numOfRow, allData }) {
         defaultValue={itemInRow.totalWeight}
       ></input>
       <input
+        disabled
         name="weight"
         className="input_box"
         placeholder="משקל"
@@ -93,6 +97,7 @@ export default function BidRow({ numOfRow, allData }) {
         }
       ></input>
       <input
+        disabled
         name="length"
         className="input_box"
         placeholder="אורך"
@@ -105,10 +110,11 @@ export default function BidRow({ numOfRow, allData }) {
           padding: itemInRow.image !== "" && "0.5% 2.5%",
         }}
         alt=""
-        src={`.${itemInRow.image}`}
+        src={itemInRow.image && url + "/" + itemInRow.image}
       ></img>
 
       <input
+        disabled
         name="category"
         className="input_box"
         placeholder="סוג"
@@ -131,6 +137,7 @@ export default function BidRow({ numOfRow, allData }) {
         id="products"
       />
       <input
+        disabled
         name="number"
         className="input_box"
         placeholder="מספר"

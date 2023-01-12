@@ -32,7 +32,7 @@ export default function EditItem({
   const updateData = async () => {
     try {
       setFetchingStatus({ loading: true, error: false });
-      await Api.patch(`/Inventory/${itemId}`, itemsValues);
+      await Api.patch(`/Inventory/`, { ...itemsValues, _id: itemId });
 
       dispatch({ type: ACTION_TYPES.EDIT, payload: state.inventory });
       setFetchingStatus({ loading: false, error: false });

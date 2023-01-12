@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import SetupPage from "./components/Setup_Components/SetupPage";
 import NavBar from "./components/NavBar/NavBar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import BidPage from "./components/Bid_components/BidPage";
 import OrderPage from "./components/Order_Components/OrderPage";
 import CalcPage from "./components/Calc_Components/CalcPage";
@@ -13,8 +13,10 @@ import { FetchingStatus } from "./utils/context";
 import HomePage from "./components/HomePage";
 import { ACTION_TYPES } from "./utils/dataActionTypes";
 import { Api } from "./utils/Api";
+import Login from "./components/login/Login";
 
 function App() {
+  const navigate = useNavigate();
   const [message, setMessage] = useState({ status: false, message: null });
   const [data, dispatchData] = useReducer(fetchReducer, INITIAL_STATE);
   const [fetchingStatus, setFetchingStatus] = useState({
@@ -23,8 +25,13 @@ function App() {
     status: false,
     message: null,
   });
+  const [loginState, setLoginState] = useState(false);
 
   useEffect(() => {
+    const myItem = localStorage.getItem("userID");
+    localStorage.clear();
+    localStorage.setItem("userID", myItem);
+
     const fetchData = async () => {
       let { data } = await Api.get("/bids");
       dispatchData({
@@ -38,6 +45,14 @@ function App() {
       });
     };
     fetchData();
+    if (
+      localStorage.getItem("userID") &&
+      localStorage.getItem("userID") !== "null"
+    ) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
   }, []);
 
   return (
@@ -50,7 +65,16 @@ function App() {
       )}
       <FetchingStatus.Provider value={[fetchingStatus, setFetchingStatus]}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <HomePage loginState={loginState} setLoginState={setLoginState} />
+            }
+          />
+          <Route
+            path="/Login"
+            element={<Login setLoginState={setLoginState} />}
+          ></Route>
           <Route
             path="/SetupPage"
             element={

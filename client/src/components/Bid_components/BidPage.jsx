@@ -23,7 +23,9 @@ export default function BidPage({ dispatch, allData }) {
     data: [],
   });
   useEffect(() => {
+    const myItem = localStorage.getItem("userID");
     localStorage.clear();
+    localStorage.setItem("userID", myItem);
   }, []);
   const uploadData = async (bidObj) => {
     try {
@@ -57,7 +59,11 @@ export default function BidPage({ dispatch, allData }) {
       isApproved: bid.isApproved,
       data: allBidRows,
     });
+
+    const myItem = localStorage.getItem("userID");
     localStorage.clear();
+    localStorage.setItem("userID", myItem);
+
     setMessage(true);
     setTimeout(() => {
       navigate("/order");

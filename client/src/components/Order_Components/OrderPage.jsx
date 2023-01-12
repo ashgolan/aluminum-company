@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { FetchingStatus } from "../../utils/context";
@@ -6,14 +5,18 @@ import { ACTION_TYPES } from "../../utils/dataActionTypes";
 import "./OrderPage.css";
 import { Api } from "../../utils/Api";
 import { exportToPdf } from "../../utils/export-to-pdf";
+import { useRef } from "react";
 export default function OrderPage({ data: allData, dispatch }) {
+  const selectOptionRef = useRef();
   const [selectedOption, setSelectedOption] = useState(null);
   const [isApproved, setIsApproved] = useState(false);
   // eslint-disable-next-line
   const [fetchingStatus, setFetchingStatus] = useContext(FetchingStatus);
   useEffect(() => {
+    const myItem = localStorage.getItem("userID");
     localStorage.clear();
-  }, []);
+    localStorage.setItem("userID", myItem);
+  }, [isApproved]);
   const filtered = allData.bids.filter((clientBid) => {
     return clientBid.isApproved === isApproved;
   });
@@ -94,6 +97,9 @@ export default function OrderPage({ data: allData, dispatch }) {
             onClick={() => {
               setSelectedOption(null);
               setIsApproved((prev) => !prev);
+              selectOptionRef.current.value = isApproved
+                ? "בחר הזמנה"
+                : "בחר הצעה";
             }}
             src="/history.png"
             alt=""
@@ -120,13 +126,14 @@ export default function OrderPage({ data: allData, dispatch }) {
 
           <select
             className="order-selection"
+            ref={selectOptionRef}
             onChange={(e) => {
               setSelectedOption(e.target.selectedOptions[0].id);
             }}
             name=""
             defaultValue={isApproved ? "בחר הזמנה" : "בחר הצעה"}
           >
-            <option value="בחר הצעה">
+            <option defaultValue="בחר הצעה">
               {isApproved ? "בחר הזמנה" : "בחר הצעה"}
             </option>
             {bidsNames}
