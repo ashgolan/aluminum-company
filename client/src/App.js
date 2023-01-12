@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar setLoginState={setLoginState}></NavBar>
       {fetchingStatus.loading && (
         <div className="loading">
           <span className="loader"></span>

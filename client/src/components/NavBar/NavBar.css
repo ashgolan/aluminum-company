@@ -3,8 +3,8 @@
   padding: 0;
   box-sizing: border-box;
 }
-img {
-  width: 75%;
+a > img {
+  width: 30%;
 }
 .setup_img {
   padding: 1%;
@@ -15,7 +15,9 @@ nav {
   height: 15vh;
   background: linear-gradient(45deg, rgb(156, 14, 156), midnightblue);
 }
-
+a {
+  width: 20%;
+}
 .list {
   list-style-type: none;
   background: linear-gradient(45deg, rgb(156, 14, 156), midnightblue);

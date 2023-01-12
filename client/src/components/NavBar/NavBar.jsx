@@ -33,9 +33,25 @@ function NavBar({ setLoginState }) {
   return (
     <nav>
       <ul className="list">
-        <Link style={{ width: "20%" }} to={"/"}>
-          <img className="logo" src="/logo6.png" alt="" />
-        </Link>
+        <div>
+          <Link className="nav-logout">
+            <img
+              style={{
+                width: "10%",
+                visibility:
+                  localStorage.getItem("userID") &&
+                  localStorage.getItem("userID") !== "null"
+                    ? "visible"
+                    : "hidden",
+              }}
+              src="/logout2.png"
+              onClick={logout}
+            />
+          </Link>
+          <Link style={{ width: "20%" }} to={"/"}>
+            <img className="logo" src="/logo6.png" alt="" />
+          </Link>
+        </div>
         <Link
           className="items"
           to={
@@ -77,7 +93,7 @@ function NavBar({ setLoginState }) {
           הצעת מחיר
         </Link>
         <Link
-          style={{ width: "5%" }}
+          style={{ width: "30%" }}
           className="items"
           to={
             localStorage.getItem("userID") &&
@@ -86,21 +102,6 @@ function NavBar({ setLoginState }) {
           }
         >
           <img className="setup_img" src="/setup.png" alt="" />
-        </Link>
-
-        <Link className="nav-logout">
-          <img
-            style={{
-              width: "20%",
-              visibility:
-                localStorage.getItem("userID") &&
-                localStorage.getItem("userID") !== "null"
-                  ? "visible"
-                  : "hidden",
-            }}
-            src="/img/logout2.png"
-            onClick={logout}
-          />
         </Link>
       </ul>
     </nav>

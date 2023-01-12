@@ -21,7 +21,9 @@ export default function ForgingPage({ dispatch }) {
     data: [],
   });
   useEffect(() => {
+    const myItem = localStorage.getItem("userID");
     localStorage.clear();
+    localStorage.setItem("userID", myItem);
   }, []);
   const uploadData = async (forgingBidObj) => {
     try {
@@ -54,7 +56,9 @@ export default function ForgingPage({ dispatch }) {
       color: forgingBid.color,
       data: allForgingBidRows,
     });
+    const myItem = localStorage.getItem("userID");
     localStorage.clear();
+    localStorage.setItem("userID", myItem);
     setTimeout(() => {
       setMessage(true);
       navigate("/");

@@ -22,10 +22,13 @@
   width: 50%;
   font-weight: bold;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   /* margin-bottom: 20%; */
   font-size: 2rem;
+}
+.title-homepage > .welcome > p {
+  margin: 1%;
 }
 
 a > .home-log-btn {

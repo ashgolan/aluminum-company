@@ -14,7 +14,7 @@ export default function Login({ setLoginState }) {
     try {
       if (!validator.isEmail(login.username))
         throw new Error("Please Insert Valid Email");
-      const { data } = await Api.post("/login", login);
+      const { data } = await Api.post("/user/login", login);
       localStorage.setItem("userID", data._id);
       setLogin({
         username: "",
@@ -77,7 +77,7 @@ export default function Login({ setLoginState }) {
                 <div>
                   <button
                     onClick={checklogin}
-                    className="btn btn-primary btn-lg btn-block m-1"
+                    // className="btn btn-primary btn-lg btn-block m-1"
                     type="submit"
                   >
                     Login

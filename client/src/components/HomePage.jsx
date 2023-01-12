@@ -25,7 +25,10 @@ export default function HomePage({ loginState, setLoginState }) {
         )}
         {localStorage.getItem("userID") &&
           localStorage.getItem("userID") !== "null" && (
-            <label style={{ fontSize: "1rem", color: "brown" }} htmlFor="">
+            <label
+              style={{ fontSize: "1rem", color: "brown", fontWeight: "bold" }}
+              htmlFor=""
+            >
               המערכת פתוחה לשימוש חופשי
             </label>
           )}
